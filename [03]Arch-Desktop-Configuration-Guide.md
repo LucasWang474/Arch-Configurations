@@ -665,8 +665,6 @@ yay -S font-manager
 
 
 
-
-
 ## V2ray
 
 ```bash
@@ -690,6 +688,24 @@ chmod u+x ~/.config/qv2ray/init.sh
 ```
 
 
+
+## Command line proxy: Using a SOCKS proxy
+
+```bash
+sudo pacman -S proxychains
+```
+
+Edit `/etc/proxychains.conf`:
+
+```bash
+socks5 127.0.0.1 1080
+```
+
+Then, `proxychains-ng` can be launched with
+
+```bash
+proxychains program
+```
 
 
 
