@@ -78,10 +78,11 @@ sudo pacman -S baobab # display disk usage in graph
 ## Printer
 
 ```bash
-sudo pacman -S cups cups-pdf system-config-printer cups-pk-helper
-
+sudo pacman -S cups system-config-printer cups-pdf cups-pk-helper gutenprint splix foomatic-db hplip
 sudo systemctl enable org.cups.cupsd.service
 ```
+
+Manage printers: http://localhost:631/
 
 
 
@@ -195,6 +196,16 @@ INPUT_METHOD  DEFAULT=fcitx5
 GTK_IM_MODULE DEFAULT=fcitx5
 QT_IM_MODULE  DEFAULT=fcitx5
 XMODIFIERS    DEFAULT=\@im=fcitx5
+```
+
+
+
+
+
+## Office
+
+```bash
+yay -S wps-office-cn ttf-wps-fonts wps-office-mine-cn wps-office-mui-zh-cn
 ```
 
 
@@ -962,5 +973,81 @@ DefaultTimeoutStopSec=3s
 ```bash
 xset -b
 ```
+
+
+
+
+
+## Hibernate: Suspend to Disk
+
+### 1. Get Block Device Name
+
+#### 1.1 Swap Partition
+
+```bash
+┌─[lucas@ArchLinux] - [~] - [Fri Nov 06, 11:16]
+└─[$] <> lsblk                  
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+nvme0n1     259:0    0 476.9G  0 disk 
+├─nvme0n1p1 259:1    0   500M  0 part /boot
+├─nvme0n1p2 259:2    0    12G  0 part [SWAP]
+└─nvme0n1p3 259:3    0 386.3G  0 part /
+
+┌─[lucas@ArchLinux] - [~] - [Fri Nov 06, 11:16]
+└─[$] <> ls -l /dev/disk/by-uuid
+
+total 0
+lrwxrwxrwx 1 root root 15 Nov  6 10:52 29cab58f-f852-4239-8687-885533b5e7e4 -> ../../nvme0n1p3
+lrwxrwxrwx 1 root root 15 Nov  6 10:52 66050937-2e5f-4508-bd21-f4335ee86c00 -> ../../nvme0n1p2
+lrwxrwxrwx 1 root root 15 Nov  6 10:52 98DA-BD3E -> ../../nvme0n1p1
+```
+
+
+
+#### [TO DO] 1.2 Swap File
+
+
+
+
+
+
+
+### 2. Configure Kernel Parameters
+
+Edit `/etc/default/grub` and append your kernel options between the quotes in the `GRUB_CMDLINE_LINUX_DEFAULT` line:
+
+```bash
+GRUB_CMDLINE_LINUX_DEFAULT="... resume=UUID=66050937-2e5f-4508-bd21-f4335ee86c00"
+```
+
+And then automatically re-generate the `grub.cfg` file with:
+
+```bash
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+
+The kernel parameters will only take effect after rebooting. 
+
+
+
+
+
+### 3. Configure Initramfs
+
+Edit `/etc/mkinitcpio.conf` and append `resume` to `HOOKS=(...)`:
+
+```bash
+HOOKS=(base udev ... resume)
+```
+
+Then regenerate the initramfs:
+
+```bash
+sudo mkinitcpio -p linux
+```
+
+Now reboot.
+
 
 
