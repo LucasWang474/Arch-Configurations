@@ -224,10 +224,76 @@ fish
 
 ## 2.2 Swap
 
+### 2.2.1 Swap Partition
+
+First create a swap partition using `fdisk` or `cfdsik`.
+
+Then
+
 ```bash
-dd if=/dev/zero of=/swapfile bs=1G count=9 status=progress
-chmod 600 /swapfile; mkswap /swapfile; swapon /swapfile; echo "/swapfile none swap defaults 0 0" >> /etc/fstab; cat /etc/fstab
+mkswap /dev/sd?
+swapon /dev/sd?
 ```
+
+To enable this swap partition on boot, add an entry to `/etc/fstab`:
+
+```
+UUID=device_UUID none swap defaults 0 0
+```
+
+Get UUID by:
+
+```bash
+ls -l /dev/disk/by-uuid
+```
+
+
+
+#### Disabling swap
+
+To deactivate specific swap space:
+
+```bash
+swapoff /dev/sdxy
+```
+
+And remove the relevant entry from `/etc/fstab`.
+
+
+
+### 2.2.2 Swap Device
+
+Use [dd](https://wiki.archlinux.org/index.php/Dd) to create a swap file the size of your choosing. 
+
+For example:
+
+```bash
+dd if=/dev/zero of=/swapfile bs=1M count=512 status=progress # 512M
+dd if=/dev/zero of=/swapfile bs=1G count=9 status=progress # 9G
+```
+
+Then
+
+```bash
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo "/swapfile none swap defaults 0 0" >> /etc/fstab
+cat /etc/fstab # check
+```
+
+
+
+#### Remove swap file
+
+To remove a swap file, it must be turned off first and then can be removed:
+
+```bash
+swapoff /swapfile
+rm -f /swapfile
+```
+
+Finally remove the relevant entry from `/etc/fstab`.
 
 
 

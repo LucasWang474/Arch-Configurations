@@ -980,7 +980,7 @@ xset -b
 
 ## Hibernate: Suspend to Disk
 
-### 1. Get Block Device Name
+### 1. Get Block Device Name by UUID
 
 #### 1.1 Swap Partition
 
@@ -1004,9 +1004,11 @@ lrwxrwxrwx 1 root root 15 Nov  6 10:52 98DA-BD3E -> ../../nvme0n1p1
 
 
 
-#### [TO DO] 1.2 Swap File
+#### 1.2 Swap File
 
-
+```bash
+sudo swap-offset /swapfile
+```
 
 
 
@@ -1031,6 +1033,27 @@ The kernel parameters will only take effect after rebooting.
 
 
 
+#### Swapfile
+
+Using a swap file requires also setting a `resume_offset=*swap_file_offset*` kernel parameters. 
+
+The value of `*swap_file_offset*` can be obtained by running `filefrag -v *swap_file*`, the output is in a table format and the required value is located in the first row of the `physical_offset` column. For example:
+
+```
+# filefrag -v /swapfile
+Filesystem type is: ef53
+File size of /swapfile is 4294967296 (1048576 blocks of 4096 bytes)
+ ext:     logical_offset:        physical_offset: length:   expected: flags:
+   0:        0..       0:      38912..     38912:      1:            
+   1:        1..   22527:      38913..     61439:  22527:             unwritten
+   2:    22528..   53247:     899072..    929791:  30720:      61440: unwritten
+...
+```
+
+In the example the value of `*swap_file_offset*` is the first `38912` with the two periods.
+
+
+
 
 
 ### 3. Configure Initramfs
@@ -1048,6 +1071,5 @@ sudo mkinitcpio -p linux
 ```
 
 Now reboot.
-
 
 
