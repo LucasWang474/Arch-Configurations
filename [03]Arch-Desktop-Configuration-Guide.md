@@ -797,6 +797,20 @@ sudo pacman -S typora
 
 
 
+## Xmind
+
+```bash
+yay -S xmind-2020
+```
+
+Crack: https://www.programmersought.com/article/51234700250/
+
+> Windows crack file is working in linux though.
+
+
+
+
+
 ## App Launcher
 
 ```bash

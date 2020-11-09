@@ -73,7 +73,7 @@ Omit `--global` to set the identity only in this repository.
 ```bash
 sudo pacman -S fish
 
-set -U fish_greeting ""
+set -U fish_greeting "\n"
 
 fish_config
 ```

@@ -442,6 +442,8 @@ Now you can log into your installation system from another system.
 ssh root@192.168.0.104 # DO NOT FOLLOW IT WITH -p 24
 ```
 
+
+
 ### Enable SSH Root Login
 
 By default, root login via ssh is not enabled. We need to change some settings inside the `sshd_config` file to enable root login.
@@ -465,3 +467,4 @@ sudo systemctl restart sshd
 ```
 
 Now try to login again.
+
