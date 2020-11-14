@@ -96,6 +96,16 @@ fish_config
 
 ## ZSH
 
+```bash
+sudo pacman -S zsh-completions
+```
+
+
+
+trash-cli
+
+
+
 - [Oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
     ```bash
@@ -131,4 +141,83 @@ fish_config
 
 
 
+
+
+
+# Python
+
+## Ipython and Jupyter Notebook
+
+```bash
+sudo pacman -S ipython jupyter-notebook
+```
+
+
+
+
+
+
+
+
+
+# Web
+
+## VS Code
+
+```bash
+sudo pacman -S code
+sudo pacman -S nodejs npm 
+```
+
+
+
+
+
+## Ruby
+
+https://open.appacademy.io/learn/full-stack-online/software-engineering-foundations/ruby-environment-setup
+
+
+
+```bash
+sudo pacman -S ruby rubydocs
+yay -S rbenv ruby-build
+```
+
+Edit `~/.zshrc`:
+
+```bash
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+```
+
+
+
+### rbenv
+
+```bash
+# install Ruby version 2.5.1
+rbenv install 2.5.1
+
+# set version 2.5.1 to be our global default
+rbenv global 2.5.1
+
+# the 'rehash' command updates the environment to your configuration
+rbenv rehash
+
+# and let's verify everything is correct
+# check the version
+ruby -v # => 2.5.1
+
+# check that we are using rbenv (this tells you where the version of ruby you are using is installed)
+which ruby # => /Users/your-username/.rbenv/shims/ruby
+```
+
+
+
+### gem
+
+```bash
+gem install bundler pry byebug
+```
 
