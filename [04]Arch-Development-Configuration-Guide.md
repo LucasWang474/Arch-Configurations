@@ -179,6 +179,22 @@ sudo pacman -S nodejs npm
 
 
 
+### Proxy
+
+Press `Ctrl+,` to open `Settings`, then search `proxy`.
+
+![image-20210124184029107]([04]Arch-Development-Configuration-Guide.assets/image-20210124184029107.png)
+
+**Note that the port `2080`** depends on your configuration in the proxy software, like `qv2ray`.
+
+And this is my setting in `qv2ray`, just a reference.
+
+![image-20210124184256646]([04]Arch-Development-Configuration-Guide.assets/image-20210124184256646.png)
+
+
+
+
+
 
 
 ## Ruby
