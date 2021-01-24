@@ -221,7 +221,8 @@ yay -S wps-office-cn ttf-wps-fonts wps-office-mine-cn wps-office-mui-zh-cn
 ## Music Player
 
 ```bash
-sudo pacman -S netease-cloud-music
+# sudo pacman -S netease-cloud-music
+sudo pacman -S netease-cloud-music-gtk
 ```
 
 
