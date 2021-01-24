@@ -73,7 +73,7 @@ Omit `--global` to set the identity only in this repository.
 ```bash
 sudo pacman -S fish
 
-set -U fish_greeting "\n"
+set -U fish_greeting ""
 
 fish_config
 ```
@@ -90,7 +90,15 @@ fish_config
     fisher install Gazorby/fish-abbreviation-tips
     ```
 
+- [z](https://github.com/jethrokuan/z) 
 
+  **z** is a port of [z](https://github.com/rupa/z) for the [fish shell](https://fishshell.com/).
+
+  ```bash
+  fisher install jethrokuan/z
+  ```
+
+  
 
 
 
