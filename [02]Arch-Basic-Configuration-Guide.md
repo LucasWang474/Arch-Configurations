@@ -183,6 +183,17 @@ Edit `~/.xprofile` OR `~/.xinit`:
 brightnessctl set 15% &
 ```
 
+If you are using `i3wm`, edit its config file:
+
+```bash
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q s +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -q s 5%-
+
+# exec --no-startup-id brightnessctl set 25% & # default brightness
+```
+
+
+
 
 
 ### 3.5.1 Night Mode: redshift
