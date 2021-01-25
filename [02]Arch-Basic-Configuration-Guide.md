@@ -88,6 +88,56 @@ And edit `.xinitrc` later.
 
 
 
+### 3.1.2 Display Manager
+
+Note: 
+
+- If you would like to use a display manager to start up your desktop, all the commands you have put in `~/.xinit` will not work anymore. 
+- To make them work, you can put them in
+  - `~.xprofile`
+  - OR in a windows manager config file, like `i3wm`'s `~/.config/i3/config`
+
+
+
+#### 3.1.2.1 SDDM
+
+```bash
+yay -S sddm sddm-sugar-candy-git
+
+# you can use proxychains to proxy pacman, like:
+# proxychains yay -S sddm
+```
+
+Preview of `sddm-sugar-candy-git`:
+
+```bash
+sddm-greeter --test-mode --theme /usr/share/sddm/themes/sugar-candy
+```
+
+![image-20210125090528275]([02]Arch-Basic-Configuration-Guide.assets/image-20210125090528275.png)
+
+
+
+Then enable `sddm`:
+
+```bash
+sudo systemctl enable sddm.service
+```
+
+`sudo vim /usr/lib/sddm/sddm.conf.d/default.conf` to add the `sugar-candy` theme we just installed:
+
+![image-20210125090223416]([02]Arch-Basic-Configuration-Guide.assets/image-20210125090223416.png)
+
+**Note:**
+
+- If you are now using another display manager, you have to disable it right now.
+
+
+
+Now you can `reboot` or `loggout`(if you have stopped another display manager).
+
+
+
 
 
 ## 3.2 Display Drivers
