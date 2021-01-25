@@ -192,3 +192,25 @@ And this is my setting in `qv2ray`, just a reference.
 ![image-20210124184256646]([04]Arch-Development-Configuration-Guide.assets/image-20210124184256646.png)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Route trace
+
+```bash
+yay -S besttrace
+```
+
+![image-20210125213137084]([04]Arch-Development-Configuration-Guide.assets/image-20210125213137084.png)
