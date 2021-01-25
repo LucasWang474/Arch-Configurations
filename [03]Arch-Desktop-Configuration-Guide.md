@@ -176,7 +176,53 @@ EndSection
 
 
 
-### Input Method: fcitx5
+### Input Method
+
+#### fcitx with sogoupinyin
+
+```bash
+yay -S fcitx fcitx-configtool fcitx-qt5 fcitx-sogoupinyin fcitx-qt4
+```
+
+**Set environment variables for IM modules**
+
+Edit `~/.pam_environment`:
+
+```bash
+GTK_IM_MODULE DEFAULT=fcitx
+QT_IM_MODULE  DEFAULT=fcitx
+XMODIFIERS    DEFAULT=@im=fcitx
+```
+
+
+
+Now run `fcitx-configtool`.
+
+
+
+**Set auto start:**
+
+- Method 1
+
+  Edit `i3wm` config:
+
+  ```bash
+  exec --no-startup-id fcitx-autostart
+  ```
+
+- Method 2
+
+  Edit `~/.xinit`
+
+  ```bash
+  fcitx-autostart &
+  ```
+
+  
+
+
+
+#### fcitx5
 
 ```bash
 sudo pacman -S fcitx5-im fcitx5-chinese-addons
@@ -197,6 +243,8 @@ GTK_IM_MODULE DEFAULT=fcitx5
 QT_IM_MODULE  DEFAULT=fcitx5
 XMODIFIERS    DEFAULT=\@im=fcitx5
 ```
+
+
 
 
 
