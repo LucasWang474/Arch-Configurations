@@ -749,7 +749,9 @@ chmod u+x ~/.config/qv2ray/init.sh
 
 
 
-## Command line proxy: Using a SOCKS proxy
+## Command line proxy
+
+### By proxychains
 
 ```bash
 sudo pacman -S proxychains
@@ -759,7 +761,15 @@ Edit `/etc/proxychains.conf`:
 
 ```bash
 socks5 127.0.0.1 1080
+http 127.0.0.1 2080
+https 127.0.0.1 2080
 ```
+
+> These "127.0.0.1 1080" stuff depends on your own proxy softwares' setting.
+>
+> Like:
+>
+> ![image-20210125211926100]([03]Arch-Desktop-Configuration-Guide.assets/image-20210125211926100.png)
 
 Then, `proxychains-ng` can be launched with
 
@@ -774,9 +784,32 @@ proxychains program
   proxychains pacman -Syyu
   ```
 
-  
 
 
+
+
+
+### By setting environment variables
+
+In terminal:
+
+```bash
+export http_proxy=http://127.0.0.1:2080/; export https_proxy=$http_proxy
+```
+
+![image-20210125212255597]([03]Arch-Desktop-Configuration-Guide.assets/image-20210125212255597.png)
+
+
+
+> You may set the `all_proxy` environment variable to let curl and pacman (which uses curl) use your socks5 proxy:
+>
+> ```bash
+> export all_proxy="socks5://your.proxy:1080"
+> ```
+
+
+
+### 
 
 
 
