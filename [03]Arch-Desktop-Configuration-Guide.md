@@ -794,6 +794,8 @@ sudo pacman -S xfce4-terminal
 sudo pacman -S typora
 ```
 
+![image-20210125085145323]([03]Arch-Desktop-Configuration-Guide.assets/image-20210125085145323.png)
+
 
 
 
