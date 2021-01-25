@@ -312,7 +312,7 @@ sudo pacman -S nitrogen
 sudo pacman -S lxappearance # theme manager
 
 # gtk-theme
-yay -S matcha-gtk-theme 
+yay -S matcha-gtk-theme arc-gtk-theme
 
 # icon-theme
 sudo pacman -S papirus-icon-theme
