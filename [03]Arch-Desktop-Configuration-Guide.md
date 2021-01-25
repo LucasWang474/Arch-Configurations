@@ -719,6 +719,15 @@ Then, `proxychains-ng` can be launched with
 proxychains program
 ```
 
+- You can even proxy `pacman`, like this
+
+  ```bash
+  su
+  proxychains pacman -Syyu
+  ```
+
+  
+
 
 
 
