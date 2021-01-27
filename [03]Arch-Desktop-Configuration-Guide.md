@@ -761,8 +761,6 @@ Edit `/etc/proxychains.conf`:
 
 ```bash
 socks5 127.0.0.1 1080
-http 127.0.0.1 2080
-https 127.0.0.1 2080
 ```
 
 > These "127.0.0.1 1080" stuff depends on your own proxy softwares' setting.

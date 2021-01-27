@@ -1,6 +1,4 @@
-# Jetbrains
-
-## Java
+# Java
 
 ```bash
 yay -S jdk-openjdk openjdk-doc # latest
@@ -9,13 +7,32 @@ yay -S jdkX-openjdk openjdkX-doc # version X
 
 
 
+## Set default Java environment
+
+```bash
+sudo archlinux-java status
+sudo archlinux-java set java-X-openjdk
+```
 
 
-## Idea
+
+
+
+## Intellij
 
 ```bash
 sudo pacman -S intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre
 ```
+
+
+
+
+
+### Intellij's official tutorial (Highly recommend)
+
+Press `Ctrl+Shift+A` and search `learn`, then `enter`.
+
+
 
 
 
@@ -59,6 +76,87 @@ Omit `--global` to set the identity only in this repository.
     ```bash
     git config --global credential.helper store
     ```
+
+
+
+
+
+
+
+# VIM
+
+`~/.vimrc`:
+
+```bash
+set clipboard=unnamedplus
+
+filetype plugin on
+
+syntax on
+
+set number
+
+set relativenumber
+
+"set spell
+
+set incsearch
+
+set hlsearch
+```
+
+
+
+## Clipboard
+
+You can `:set clipboard=unnamedplus` to use the `"+` register instead. The `"+` register corresponds to the `CLIPBOARD` buffer in X.
+
+
+
+## Syntax highlighting
+
+To enable syntax highlighting for many programming languages:
+
+```
+:filetype plugin on
+:syntax on
+```
+
+
+
+## Indentation
+
+The indent file for specific file types can be loaded with:
+
+```
+:filetype indent on
+```
+
+
+
+## Line numbers
+
+To show the line number column, use `:set number`. By default absolute line numbers are shown, relative numbers can be enabled with `:set relativenumber`. Setting both enables hybrid line numbers - the current line is absolute, while the others are relative.
+
+
+
+
+
+## Highlighting search results
+
+In order to highlight the first string that will be matched in a search while typing the search, add the following line to your `~/.vimrc`:
+
+```
+set incsearch
+```
+
+In order to highlight all strings that will be matched in a search while typing the search, and after the search has been executed, add the following line to your `~/.vimrc`:
+
+```
+set hlsearch
+```
+
+
 
 
 
@@ -164,6 +262,16 @@ sudo pacman -S ipython jupyter-notebook
 
 
 
+## Pycharm
+
+```bash
+sudo pacman -S pycharm-community-edition
+```
+
+
+
+
+
 
 
 
@@ -195,18 +303,6 @@ And this is my setting in `qv2ray`, just a reference.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 ## Route trace
 
 ```bash
@@ -214,3 +310,4 @@ yay -S besttrace
 ```
 
 ![image-20210125213137084]([04]Arch-Development-Configuration-Guide.assets/image-20210125213137084.png)
+
