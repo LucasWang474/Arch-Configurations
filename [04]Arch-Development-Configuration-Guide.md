@@ -1,3 +1,24 @@
+# C
+
+```bash
+yay -S gcc cmake gdb lldb
+```
+
+
+
+## Clion
+
+```bash
+yay -S clion 
+# yay -S clion-cmake clion-gdb clion-jre clion-lldb # optional
+```
+
+
+
+
+
+
+
 # Java
 
 ```bash
