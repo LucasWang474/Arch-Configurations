@@ -192,6 +192,8 @@ set hlsearch
 ```bash
 sudo pacman -S fish
 
+yay -S fisher
+
 set -U fish_greeting ""
 
 fish_config

@@ -807,7 +807,7 @@ export http_proxy=http://127.0.0.1:2080/; export https_proxy=$http_proxy
 
 
 
-### 
+
 
 
 
@@ -1133,10 +1133,10 @@ sudo vim /etc/systemd/system.conf
 ```
 
 ```bash
-RebootWatchdogSec=3s
-ShutdownWatchd1ogSec=3s
-DefaultTimeoutStartSec=3s
-DefaultTimeoutStopSec=3s
+RebootWatchdogSec=10s
+ShutdownWatchd1ogSec=10s
+DefaultTimeoutStartSec=5s
+DefaultTimeoutStopSec=5s
 ```
 
 

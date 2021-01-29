@@ -118,6 +118,12 @@ sddm-greeter --test-mode --theme /usr/share/sddm/themes/sugar-candy
 
 
 
+> **Note:**
+>
+> - If you are now using another display manager, you have to disable it right now.
+
+
+
 Then enable `sddm`:
 
 ```bash
@@ -127,10 +133,6 @@ sudo systemctl enable sddm.service
 `sudo vim /usr/lib/sddm/sddm.conf.d/default.conf` to add the `sugar-candy` theme we just installed:
 
 ![image-20210125090223416]([02]Arch-Basic-Configuration-Guide.assets/image-20210125090223416.png)
-
-**Note:**
-
-- If you are now using another display manager, you have to disable it right now.
 
 
 
