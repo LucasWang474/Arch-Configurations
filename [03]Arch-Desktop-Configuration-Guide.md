@@ -1119,7 +1119,7 @@ GRUB_TIMEOUT=2
 **Alias**
 
 ```bash
-alias update-grub=‘sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 ```
 
 
