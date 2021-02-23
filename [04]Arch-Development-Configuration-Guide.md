@@ -6,6 +6,8 @@ yay -S gcc cmake gdb lldb
 
 
 
+
+
 ## Clion
 
 ```bash
@@ -42,7 +44,7 @@ sudo archlinux-java set java-X-openjdk
 ## Intellij
 
 ```bash
-sudo pacman -S intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre
+sudo pacman -S intellij-idea-ultimate-edition
 ```
 
 
@@ -97,8 +99,6 @@ Omit `--global` to set the identity only in this repository.
     ```bash
     git config --global credential.helper store
     ```
-
-
 
 
 
@@ -223,6 +223,26 @@ fish_config
 
 
 
+### Tricks
+
+#### abbr
+
+- ```bash
+  abbr -a -U l less
+  ```
+
+  Add a new abbreviation where `l` will be replaced with `less` universal so all shells. Note that you omit the `-U` since it is the default.
+
+- 
+
+
+
+
+
+
+
+
+
 ## ZSH
 
 ```bash
@@ -304,8 +324,8 @@ sudo pacman -S pycharm-community-edition
 ## VS Code
 
 ```bash
-sudo pacman -S code
-sudo pacman -S nodejs npm 
+yay -S visual-studio-code-bin
+# sudo pacman -S nodejs npm 
 ```
 
 

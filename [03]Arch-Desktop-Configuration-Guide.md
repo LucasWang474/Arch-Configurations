@@ -4,6 +4,7 @@
 
 ```bash
 sudo pacman -S pcmanfm file-roller p7zip unrar
+sudo pacman -S thunar
 ```
 
 
@@ -13,7 +14,8 @@ sudo pacman -S pcmanfm file-roller p7zip unrar
 ## Image
 
 ```bash
-sudo pacman -S gpicview gthumb
+sudo pacman -S nomacs imagemagick gwenview feh
+# sudo pacman -S gpicview gthumb
 ```
 
 
@@ -23,7 +25,7 @@ sudo pacman -S gpicview gthumb
 ## PDF
 
 ```bash
-sudo pacman -S okular
+sudo pacman -S okular evince
 
 sudo pacman -S simple-scan
 ```
@@ -45,31 +47,10 @@ sudo pacman -S gnome-clocks
 ## Download
 
 ```bash
-sudo pacman -S uget aria2
+sudo pacman -S uget aria2 qbittorrent
 ```
 
 
-
-
-
-## Partition
-
-```bash
-sudo pacman -S gparted
-```
-
-
-
-
-
-## System Information
-
-```bash
-sudo pacman -S htop
-sudo pacman -S neofetch 
-sudo pacman -S hardinfo 
-sudo pacman -S baobab # display disk usage in graph
-```
 
 
 
@@ -78,20 +59,22 @@ sudo pacman -S baobab # display disk usage in graph
 ## Printer
 
 ```bash
-sudo pacman -S cups system-config-printer cups-pdf cups-pk-helper gutenprint splix foomatic-db hplip
-sudo systemctl enable org.cups.cupsd.service
+sudo pacman -S cups hplip 
+sudo pacman -S system-config-printer cups-pdf cups-pk-helper gutenprint splix foomatic-db
+sudo systemctl enable cups
 ```
 
-Manage printers: http://localhost:631/
 
 
 
 
 
-## [TO DO] Bluetooth
+
+## Bluetooth
 
 ```bash
-# sudo pacman -S bluez blueman blueberry
+sudo pacman -S bluez bluez-utils
+sudo systemctl enable bluetooth
 ```
 
 
@@ -141,36 +124,6 @@ sudo ln -s 70-synaptics.conf /etc/X11/xorg.conf.d/
 ```
 
 
-
-The following example file configures some common options, including vertical, horizontal and circular scrolling as well as tap-to-click:
-
-```bash
-/etc/X11/xorg.conf.d/70-synaptics.conf
-Section "InputClass"
-    Identifier "touchpad"
-    Driver "synaptics"
-    MatchIsTouchpad "on"
-        Option "TapButton1" "1"
-        Option "TapButton2" "3"
-        Option "TapButton3" "2"
-        Option "VertEdgeScroll" "on"
-        Option "VertTwoFingerScroll" "on"
-        Option "HorizEdgeScroll" "on"
-        Option "HorizTwoFingerScroll" "on"
-        Option "CircularScrolling" "on"
-        Option "CircScrollTrigger" "2"
-        Option "EmulateTwoFingerMinZ" "40"
-        Option "EmulateTwoFingerMinW" "8"
-        Option "CoastingSpeed" "0"
-        Option "FingerLow" "30"
-        Option "FingerHigh" "50"
-        Option "MaxTapTime" "125"
-        
-        Option "PalmDetect" "1"
-        Option "PalmMinWidth" "8"
-        Option "PalmMinZ" "100"
-EndSection
-```
 
 
 
@@ -254,6 +207,31 @@ XMODIFIERS    DEFAULT=\@im=fcitx5
 
 ```bash
 yay -S wps-office-cn ttf-wps-fonts wps-office-mine-cn wps-office-mui-zh-cn
+```
+
+
+
+
+
+# System Management
+
+## Partition
+
+```bash
+sudo pacman -S gparted
+```
+
+
+
+
+
+## System Information
+
+```bash
+sudo pacman -S htop
+sudo pacman -S neofetch 
+sudo pacman -S hardinfo 
+sudo pacman -S baobab # display disk usage in graph
 ```
 
 
@@ -640,7 +618,7 @@ xrender-sync-fence = true;
 # Font
 
 ```bash
-sudo pacman -S noto-fonts noto-fonts-emoji noto-fonts-cjk
+sudo pacman -S noto-fonts noto-fonts-emoji noto-fonts-cjk ttf-dejavu ttf-liberation 
 yay -S font-manager
 ```
 
@@ -674,36 +652,51 @@ yay -S font-manager
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
-	<alias>
-		<family>sans-serif</family>
-		<prefer>
-			<family>Noto Sans</family>
-			<family>Noto Sans CJK SC</family>
-			<family>Noto Sans CJK TC</family>
-			<family>Noto Sans CJK JP</family>
-			<family>Noto Sans CJK KR</family>
-		</prefer>
-	</alias>
-	<alias>
-		<family>serif</family>
-		<prefer>
-			<family>Noto Serif</family>
-			<family>Noto Serif CJK SC</family>
-			<family>Noto Serif CJK TC</family>
-			<family>Noto Serif CJK JP</family>
-			<family>Noto Serif CJK KR</family>
-		</prefer>
-	</alias>
-	<alias>
-		<family>monospace</family>
-		<prefer>
-			<family>Noto Sans Mono</family>
-			<family>Noto Sans Mono CJK SC</family>
-			<family>Noto Sans Mono CJK TC</family>
-			<family>Noto Sans Mono CJK JP</family>
-			<family>Noto Sans Mono CJK KR</family>
-		</prefer>
-	</alias>
+	<!-- Set preferred serif, sans serif, and monospace fonts. -->
+    <alias>
+        <family>sans-serif</family>
+        <prefer>
+            <family>Noto Sans</family>
+            <family>Noto Sans CJK SC</family>
+            <family>Noto Sans CJK TC</family>
+            <family>Noto Sans CJK JP</family>
+            <family>Noto Sans CJK KR</family>
+            <family>Droid Sans</family>
+        </prefer>
+    </alias>
+    <alias>
+        <family>serif</family>
+        <prefer>
+            <family>Noto Serif</family>
+            <family>Noto Serif CJK SC</family>
+            <family>Noto Serif CJK TC</family>
+            <family>Noto Serif CJK JP</family>
+            <family>Noto Serif CJK KR</family>
+            <family>Droid Serif</family>
+        </prefer>
+    </alias>
+    <alias>
+        <family>monospace</family>
+        <prefer>
+            <family>Noto Sans Mono</family>
+            <family>Noto Sans Mono CJK SC</family>
+            <family>Noto Sans Mono CJK TC</family>
+            <family>Noto Sans Mono CJK JP</family>
+            <family>Noto Sans Mono CJK KR</family>
+            <family>Droid Sans Mono</family>
+        </prefer>
+    </alias>
+    <alias>
+        <family>mono</family>
+        <prefer>
+            <family>Noto Sans Mono</family>
+            <family>Noto Sans Mono CJK SC</family>
+            <family>Noto Sans Mono CJK TC</family>
+            <family>Noto Sans Mono CJK JP</family>
+            <family>Noto Sans Mono CJK KR</family>
+            <family>Droid Sans Mono</family>
+        </prefer>
+    </alias>
 </fontconfig>
 ```
 
@@ -718,7 +711,13 @@ yay -S font-manager
 ## Chromium
 
 - Download `SwitchyOmega_Chromium.crx` from [SwitchyOmega](https://github.com/FelisCatus/SwitchyOmega) and rename it to `SwitchyOmega_Chromium.zip`.
+
+    ```bash
+    wget https://github.com/FelisCatus/SwitchyOmega/releases/download/v2.5.20/SwitchyOmega_Chromium.crx
+    ```
+
 - Go to chrome://extensions/ and enable Developer Mode.
+
 - Then put `SwitchyOmega_Chromium.zip` into there.
 
     - Autoproxy: https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
@@ -728,7 +727,115 @@ yay -S font-manager
 ## V2ray
 
 ```bash
-sudo pacman -S v2ray qv2ray-dev-git 
+sudo pacman -S v2ray
+```
+
+
+
+### NO GUI
+
+My workflow:
+
+- First export client side config file from `v2rayN` or `qv2ray`.
+
+  - socks and http
+
+    ```json
+        "inbounds": [
+            {
+                "tag": "proxy",
+                "port": 1081,
+                "listen": "127.0.0.1",
+                "protocol": "socks",
+                "sniffing": {
+                    "enabled": true,
+                    "destOverride": [
+                        "http",
+                        "tls"
+                    ]
+                },
+                "settings": {
+                    "auth": "noauth",
+                    "udp": true,
+                    "ip": null,
+                    "address": null,
+                    "clients": null,
+                    "decryption": null
+                },
+                "streamSettings": null
+            },
+            {
+                "tag": "proxy",
+                "port": 1082,
+                "listen": "127.0.0.1",
+                "protocol": "http",
+                "sniffing": {
+                    "enabled": true,
+                    "destOverride": [
+                        "http",
+                        "tls"
+                    ]
+                },
+                "settings": {
+                    "auth": "noauth",
+                    "udp": false
+                }
+            }
+        ],
+    ```
+
+- Then upload the config file.
+
+  And check the config file.
+
+  ```bash
+  v2ray -test config.json
+  ```
+
+- Then
+
+  ```bash
+  sudo cp /etc/v2ray/config.json /etc/v2ray/config.json.bak
+  sudo cp config.json /etc/v2ray/config.json
+  sudo systemctl enable v2ray 
+  sudo systemctl start v2ray
+  ```
+
+- Now test it.
+
+  ```bash
+  lucas@arch ~/Downloads> export http_proxy=http://127.0.0.1:1082/; export https_proxy=$http_proxy
+  ```
+
+  Note that your proxy port might be different.
+
+  ```bash
+  lucas@arch ~/Downloads> wget google.com
+  --2021-02-05 00:43:55--  http://google.com/
+  Connecting to 127.0.0.1:1082... connected.
+  Proxy request sent, awaiting response... 301 Moved Permanently
+  Location: http://www.google.com/ [following]
+  --2021-02-05 00:43:56--  http://www.google.com/
+  Reusing existing connection to 127.0.0.1:1082.
+  Proxy request sent, awaiting response... 200 OK
+  Length: unspecified [text/html]
+  Saving to: ‘index.html’
+  
+  index.html                                 [ <=>                                                                         ]  13.79K  --.-KB/s    in 0.009s
+  
+  2021-02-05 00:43:56 (1.48 MB/s) - ‘index.html’ saved [14117]
+  ```
+
+  
+
+
+
+
+
+### GUI
+
+```bash
+sudo pacman -S qv2ray
 ```
 
 Create `~/.config/qv2ray/init.sh `:
@@ -746,6 +853,10 @@ Then
 ```bash
 chmod u+x ~/.config/qv2ray/init.sh
 ```
+
+
+
+
 
 
 
@@ -796,14 +907,6 @@ export http_proxy=http://127.0.0.1:2080/; export https_proxy=$http_proxy
 ```
 
 ![image-20210125212255597]([03]Arch-Desktop-Configuration-Guide.assets/image-20210125212255597.png)
-
-
-
-> You may set the `all_proxy` environment variable to let curl and pacman (which uses curl) use your socks5 proxy:
->
-> ```bash
-> export all_proxy="socks5://your.proxy:1080"
-> ```
 
 
 
@@ -896,7 +999,22 @@ yay -S xmind-2020
 
 Crack: https://www.programmersought.com/article/51234700250/
 
-> Windows crack file is working in linux though.
+> Windows crack file works in linux though.
+
+```bash
+lucas@arch ~/R/I/W/XmindZen> 7z x XMind_2020_10.3.1_Linux_补丁.7z 
+
+lucas@arch ~/R/I/W/XmindZen> cd XMind_2020_10.3.1_Linux_补丁/
+lucas@arch ~/R/I/W/X/XMind_2020_10.3.1_Linux_补丁> ls
+app.asar  使用说明.txt
+
+lucas@arch ~/R/I/W/X/XMind_2020_10.3.1_Linux_补丁> 
+sudo mv /opt/XMind/resources/app.asar /opt/XMind/resources/app.asar.bak
+lucas@arch ~/R/I/W/X/XMind_2020_10.3.1_Linux_补丁> 
+sudo cp app.asar /opt/XMind/resources/app.asar 
+```
+
+
 
 
 
@@ -905,7 +1023,7 @@ Crack: https://www.programmersought.com/article/51234700250/
 ## App Launcher
 
 ```bash
-sudo pacman -S rofi
+sudo pacman -S rofi # run rofi-theme-selector to select theme
 sudo pacman -S gmrun
 sudo pacman -S xfce4-appfinder
 ```
@@ -934,7 +1052,7 @@ sudo pacman -S goldendict hunspell hunspell-en_US
 
 
 
-
+​	
 
 
 

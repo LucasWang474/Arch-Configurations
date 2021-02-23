@@ -1,8 +1,28 @@
-## 0. Pre-Installation
+# References
+
+- [Arch wiki](https://wiki.archlinux.org/index.php/installation_guide)
+- [How to install Arch Linux in the cloud](https://upcloud.com/community/tutorials/install-arch-linux/)
+- [Installing 2019 Arch Linux on a Vultr Server](https://www.vultr.com/docs/installing-2019-arch-linux-on-a-vultr-server?__cf_chl_jschl_tk__=741c9f6169ab579e8dbfde914747b1743bcf6c02-1612449275-0-AV3LXK85jCpdIFwKeZJVVNuB7QM-r8K4IK_LsFdmQxllDU3LiULXQvdGa7fBEFt7lduB_rG_HBgd_g_orUTavhpVJ2l291gmTTldDwLWqFWdewReuhY6gVUT_e0NXt0YtWSLJxWLIJkGa7D50yN4lewwh6pruJImZNQj1IvG4j8qcr59AEUGnaFNQO8_caj-9bJfiO6b4FGwxgx-gA1gblq-VXY4eJL6GcKtdSSnJdgw-BotqF85io-SbncbKzF0Ict3R2iUUR5MO3YFhzuUm6FKLsGx-mqrxGEGn5caUbXHOUOOcBahAMN2E1jD7Mv0926y3-3-C2C3-T-Q3PwOFcu9uIwcQJ3aKJltCs3O8J5L22JorUXIwfdT1kSiYopm-7QEFfOSMBaMe_gxB2ZSuLx3POPb27JG-3OZ3SyrKdzFbjY2SQtLcCndJCRfD_T23w)
+
+- [Youtube: EF - Linux Made Simple](https://www.youtube.com/channel/UCX_WM2O-X96URC5n66G-hvw)
+
+
+
+
+
+# 0. Pre-Installation
 
 ## 0.1 Acquire an Installation Image
 
 Visit the [Download](https://www.archlinux.org/download/) page.
+
+Use `wget`:
+
+```bash
+cd Downloads
+
+wget https://mirrors.sjtug.sjtu.edu.cn/archlinux/iso/2021.02.01/archlinux-2021.02.01-x86_64.iso
+```
 
 
 
@@ -33,7 +53,7 @@ Visit the [Download](https://www.archlinux.org/download/) page.
 
   - [Rufus - The Official Website (Download, New Releases)](https://rufus.ie/)
   
-    > Note: If the USB drive does not boot properly using the default ISO Image mode, **DD Image mode** should be used instead.
+    > **Note: If the USB drive does not boot properly using the default ISO Image mode, DD Image mode should be used instead.**
   
   - [USBWriter download | SourceForge.net](https://sourceforge.net/projects/usbwriter/)
 
@@ -61,13 +81,13 @@ Visit the [Download](https://www.archlinux.org/download/) page.
 
 ## 0.4 Verify the Boot Mode
 
-> To verify the boot mode, list the [efivars](https://wiki.archlinux.org/index.php/Efivars) directory:
->
-> ```bash
-> ls /sys/firmware/efi/efivars
-> ```
->
-> If the command shows the directory without error, then the system is booted in UEFI mode. If the directory does not exist, the system may be booted in [BIOS](https://en.wikipedia.org/wiki/BIOS) (or [CSM](https://en.wikipedia.org/wiki/Compatibility_Support_Module)) mode. 
+To verify the boot mode, list the [efivars](https://wiki.archlinux.org/index.php/Efivars) directory:
+
+```bash
+ls /sys/firmware/efi/efivars
+```
+
+If the command shows the directory without error, then the system is booted in UEFI mode. If the directory does not exist, the system may be booted in [BIOS](https://en.wikipedia.org/wiki/BIOS) (or [CSM](https://en.wikipedia.org/wiki/Compatibility_Support_Module)) mode. 
 
 
 
@@ -79,8 +99,38 @@ Don't be stupid, please use Ethernet.
 
 The connection may be verified with:
 
-```
+```bash
 pacman -Syy
+```
+
+
+
+### Login via ssh
+
+Start the SSH server.
+
+```bash
+systemctl start sshd
+```
+
+Then check that the SSH server is running.
+
+```bash
+systemctl status sshd
+```
+
+Once SSH is running, take note of your public IP address using the command below.
+
+```bash
+ip addr
+```
+
+The second interface and the first called *ens** should have your public IPv4 address. 
+
+You are now ready to log in to the cloud server with SSH from your computer.
+
+```bash
+ssh root@ip-address
 ```
 
 
@@ -120,7 +170,7 @@ The following [partitions](https://wiki.archlinux.org/index.php/Partition) are *
 
 Partition your hard drive (`/dev/sda` will be used in this guide) with **`fdisk`** or **`cfdisk`**, the partition numbers and order are at your discretion:
 
-```
+```bash
 cfdisk /dev/sda
 ```
 
@@ -175,13 +225,13 @@ sda      8:0    0    60G  0 disk
 reflector -c China -f 10 --save /etc/pacman.d/mirrorlist; cat /etc/pacman.d/mirrorlist
 ```
 
-`/etc/pacman.d/mirrorlist` will later be copied to the new system by `pacstrap`, so it is worth getting right.
-
-
+If the command above does not work, edit it manually.
 
 ```bash
-pacman -Syy fish; fish # swtich to fish shell
+vim /etc/pacman.d/mirrorlist
 ```
+
+`/etc/pacman.d/mirrorlist` will later be copied to the new system by `pacstrap`, so it is worth getting right.
 
 
 
@@ -190,7 +240,7 @@ pacman -Syy fish; fish # swtich to fish shell
 ## 1.2 Install Essential Packages
 
 ```bash
-pacstrap /mnt base base-devel linux linux-firmware linux-headers vim bash fish reflector git
+pacstrap /mnt base base-devel linux linux-firmware linux-headers amd-ucode vim bash fish reflector git openssh
 ```
 
 
@@ -215,7 +265,6 @@ genfstab -U /mnt >> /mnt/etc/fstab; cat /mnt/etc/fstab # check
 
 ```bash
 arch-chroot /mnt
-fish 
 ```
 
 
@@ -269,17 +318,14 @@ For example:
 
 ```bash
 dd if=/dev/zero of=/swapfile bs=1M count=512 status=progress # 512M
+
 dd if=/dev/zero of=/swapfile bs=1G count=9 status=progress # 9G
 ```
 
 Then
 
 ```bash
-chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-echo "/swapfile none swap defaults 0 0" >> /etc/fstab
-cat /etc/fstab # check
+chmod 600 /swapfile; mkswap /swapfile; swapon /swapfile; echo "/swapfile none swap defaults 0 0" >> /etc/fstab; cat /etc/fstab # check
 ```
 
 
@@ -302,7 +348,7 @@ Finally remove the relevant entry from `/etc/fstab`.
 ## 2.3 Time Zone
 
 ```bash
-ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime; timedatectl set-ntp true; hwclock --systohc; date # check
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime; timedatectl set-ntp true; hwclock --systohc; date # check
 ```
 
 
@@ -318,6 +364,14 @@ en_US.UTF-8 UTF-8
 zh_CN.UTF-8 UTF-8
 ```
 
+A quick way of doing so is using *sed* with the command below.
+
+```bash
+sed 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' -i /etc/locale.gen
+
+sed 's/#zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' -i /etc/locale.gen
+```
+
 **Then **Generate the locales:
 
 ```
@@ -327,7 +381,7 @@ locale-gen
 **Lastly** create the [locale.conf(5)](https://jlk.fjfi.cvut.cz/arch/manpages/man/locale.conf.5) file, and [set the LANG variable](https://wiki.archlinux.org/index.php/Locale#Setting_the_system_locale) accordingly:
 
 ```bash
-echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
 ```
 
 
@@ -339,25 +393,89 @@ echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 **First** create your hostname:
 
 ```bash
-echo "arch" >> /etc/hostname
+echo "arch" > /etc/hostname
 ```
 
 **Then** add matching entries to [hosts(5)](https://jlk.fjfi.cvut.cz/arch/manpages/man/hosts.5):
 
 ```bash
-/etc/hosts
+cat > /etc/hosts << EOF
 127.0.0.1    localhost
 ::1          localhost
 127.0.1.1    arch.localdomain arch
+EOF
 ```
 
-**And install network manager:**
+
+
+### Server
+
+The easiest way to configure networking on a server is through DHCP.
 
 ```bash
-pacman -S networkmanager network-manager-applet nm-connection-editor 
-
-systemctl enable NetworkManager.service
+pacman -S dhcpcd
 ```
+
+Make DHCP automatically run at boot.
+
+```bash
+systemctl enable systemd-networkd
+systemctl enable dhcpcd
+```
+
+Make DNS resolution automatically run at boot.
+
+```bash
+systemctl enable systemd-resolved
+```
+
+
+
+#### ssh
+
+By default, root login via ssh is not enabled. We need to change some settings inside the `sshd_config` file to enable root login.
+
+Make a backup copy of the `sshd_config` file. You should be able to use tab auto-completion to make this easier on the web console.
+
+```bash
+cp /etc/ssh/sshd_config /etc/ssh/sshd_conf.bak
+```
+
+Edit  the `/etc/ssh/sshd_config` file. Find the following lines and make some changes to it.
+
+```bash
+vim /etc/ssh/sshd_config
+```
+
+```bash
+#PermitRootLogin prohibit-password
+PermitRootLogin yes
+PasswordAuthentication yes
+```
+
+Then finally enable the SSH daemon on the console.
+
+```bash
+systemctl enable sshd
+```
+
+
+
+
+
+
+
+### Desktop
+
+**Install network manager:**
+
+```bash
+pacman -S networkmanager network-manager-applet wpa_supplicant dialog 
+
+systemctl enable NetworkManager
+```
+
+
 
 
 
@@ -376,7 +494,7 @@ passwd
 ## 2.7 Boot Loader
 
 ```bash
-pacman -S grub efibootmgr os-prober dosfstools ntfs-3g mtools amd-ucode
+pacman -S grub efibootmgr dosfstools mtools ntfs-3g os-prober
 ```
 
 ```bash
@@ -385,9 +503,29 @@ grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB; gr
 
 
 
+By default at boot, grub will wait for 5 seconds before choosing the default option. To disable this wait, use the following.
+
+```bash
+sed 's/^GRUB_TIMEOUT=5$/GRUB_TIMEOUT=0/' -i /etc/default/grub
+```
+
+**Note**: *If you still want access to the grub boot menu, you might want to set this to 1 second instead of 0.*
 
 
-## 2.8 Reboot
+
+By default, grub gives the kernel the `quiet` option which `systemd` also follows. Use the following to show startup and shutdown messages.
+
+```bash
+sed 's/^GRUB_CMDLINE_LINUX_DEFAULT="quiet"$/GRUB_CMDLINE_LINUX_DEFAULT=""/' -i /etc/default/grub
+```
+
+
+
+Create the grub configuration.
+
+```bash
+grub-mkconfig -o /boot/grub/grub.cfg
+```
 
 
 
@@ -395,76 +533,132 @@ grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB; gr
 
 
 
-# Tricks
+## 2.8 Setting up a new user and SSH authentication
 
-## Openssh
+You should now be connected to your new Arch server over SSH and the basic install is complete, but we are not quite done. 
 
-If you want to install (arch) linux from another system, you can use `openssh` to do that.
+For improved security and convenience, you should set up a new username for yourself and configure SSH keys to it.
 
-> If you are using a vm, you need to enable vm's bridge network feature.
+
+
+Start by creating a new unprivileged username using the command below. Name the account as you see fit.
+
+```bash
+useradd -mG wheel lucas
+```
+
+Then set a password for the new user.
+
+```bash
+passwd lucas
+```
+
+Allow members in group `wheel` to use `sudo`.
+
+```bash
+cp /etc/sudoers /etc/sudoers.new
+
+sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' -i /etc/sudoers.new
+
+visudo -c -f /etc/sudoers.new && mv /etc/sudoers.new /etc/sudoers
+```
+
+Now, SSH daemon is already running **but the settings allow root to log in which can be insecure.** Revert the changes made to the sshd_config file by swapping it to the default config we backed up earlier.
+
+```bash
+cp /etc/ssh/sshd_conf.bak /etc/ssh/sshd_config
+```
+
+Then, restart the SSH daemon to apply the new configuration.
+
+```bash
+systemctl restart sshd
+```
+
+
+
+Next, generate an SSH key pair for your regular user **on your own computer.** You should preferably also secure the key with a password. On Linux systems, this can be achieved with the following command.
+
+```bash
+ssh-keygen
+```
+
+Once you have created a new SSH key pair, copy over the public part to your Arch Linux server. By default, the public SSH key is saved to `/home/username/.ssh/id_rsa.pub`.
+
+Then on the cloud server, change into your new user account and create the following directory.
+
+```bash
+su lucas
+mkdir ~/.ssh
+```
+
+The public SSH key should be saved to file at `/home/username/.ssh/authorized_keys`. Open a new file in a text editor, for example, by using `nano` and copy the public SSH key into this file.
+
+```
+nano ~/.ssh/authorized_keys
+```
+
+Then save the file and exit the editor.
+
+Next, switch back to the root user by simply exiting your new username.
+
+```
+exit
+```
+
+You can then edit the `/etc/ssh/sshd_config` file according to your needs.
+
+```
+nano /etc/ssh/sshd_config
+```
+
+Here are some examples of changes you might wish to make:
+
+- Disable the *sftp* subsystem if not needed by commenting out the line
+- Disable password login by setting *PasswordAuthentication no*
+- Speed up the login by setting SSH to only use IPv4 with *AddressFamily inet*
+
+You can find more information about the available configuration options at the [ArchWiki](https://wiki.archlinux.org/index.php/OpenSSH#Protection).
+
+After altering the configuration, restart the SSH daemon again as the *root* user.
+
+```bash
+systemctl restart sshd
+```
+
+Then test logging in by opening a new terminal window on your own machine, and connecting with the username you created earlier.
+
+```bash
+ssh lucas@ip-address
+```
+
+
+
+
+
+> ## Testing notes
 >
-> - Vmware
->   - Go to `VM->Setting->Network Adapater`, and click `Bridged: ...`.
-> - Virtual Box
->   - Go to `Setting->Network->Adapter2`, and choose `Bridged Adapter` and `enp...`.
+> 
+>
+> After rebooting the system via SSH connection with `reboot` as the root user, **it might take a minute until the server accepts SSH connections again.** Booting itself is really fast, but the SSH daemon can take time to fully start.
+>
+> If SSH fails to connect after rebooting, logging in as any user via the web browser console connection should solve the issue and allow you to connect using SSH.
+
+
+
+
+
+## 2.9 Configure time synchronization
+
+For a lightweight time synchronization client with rough accuracy use the following.
 
 ```bash
-pacman -S openssh
-# systemctl enable sshd
-systemctl start sshd
-passwd # make sure you have set your password
+systemctl enable --now systemd-timesyncd
 ```
 
-Now run `ip a` to find your ip address.
+If you would prefer better accuracy.
 
 ```bash
-root@archiso ~ # ip a
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host 
-       valid_lft forever preferred_lft forever
-2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-    link/ether 00:0c:29:13:dc:3f brd ff:ff:ff:ff:ff:ff
-    altname enp2s1
-    inet 192.168.0.104/24 brd 192.168.0.255 scope global dynamic ens33
-       valid_lft 5177sec preferred_lft 5177sec
-    inet6 fe80::20c:29ff:fe13:dc3f/64 scope link 
-       valid_lft forever preferred_lft forever
+pacman -S ntp
+systemctl enable --now ntpd
 ```
-
-And `192.168.0.104` is what we need.
-
-Now you can log into your installation system from another system.
-
-```bash
-ssh root@192.168.0.104 # DO NOT FOLLOW IT WITH -p 24
-```
-
-
-
-### Enable SSH Root Login
-
-By default, root login via ssh is not enabled. We need to change some settings inside the `sshd_config` file to enable root login.
-
-```bash
-sudo vim /etc/ssh/sshd_config
-```
-
-Find the following lines and make some changes to it
-
-```bash
-#PermitRootLogin prohibit-password
-PermitRootLogin yes
-PasswordAuthentication yes
-```
-
-Close and save the file. Finally restart ssh service
-
-```bash
-sudo systemctl restart sshd
-```
-
-Now try to login again.
-

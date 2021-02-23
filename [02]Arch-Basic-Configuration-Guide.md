@@ -6,6 +6,7 @@ To add a new user, use the `useradd` command:
 
 ```bash
 useradd -s /bin/fish -mG wheel,audio,video,optical,storage lucas
+usermod -c 'Lucas Wang' lucas
 
 passwd lucas
 
@@ -14,11 +15,21 @@ pacman -S xdg-utils xdg-user-dirs
 
 Then run `visudo` and uncomment `#%wheel ALL=(ALL) ALL`.
 
+```bash
+EDITOR=vim visudo
+```
+
 
 
 
 
 ## 1.2 System Maintenance
+
+```bash
+sudo pacman -S tlp powertop
+sudo systemctl enable tlp
+sudo systemctl enable --now fstrim.timer
+```
 
 
 
@@ -39,7 +50,10 @@ Then run `visudo` and uncomment `#%wheel ALL=(ALL) ALL`.
 ### 2.2.1 Sorting Mirrors
 
 ```bash
+sudo pacman -S rsync
 sudo reflector -c China -f 10 --save /etc/pacman.d/mirrorlist
+
+# sudo systemctl enable --now reflector.timer
 ```
 
 
@@ -51,25 +65,44 @@ sudo reflector -c China -f 10 --save /etc/pacman.d/mirrorlist
   ```bash
   # /etc/pacman.conf
   [archlinuxcn]
-  Server = http://mirror.lzu.edu.cn/archlinuxcn/$arch
+  Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux-cn/$arch
+  # Server = http://mirror.lzu.edu.cn/archlinuxcn/$arch
   ```
 
-  **And** uncomment `#Color`.
 
-  **Then:**
+**And** uncomment `#Color`.
+
+**Then:**
 
   ```bash
-  sudo pacman -Syy && sudo pacman -S archlinuxcn-keyring
-  sudo pacman -S yay
+sudo pacman -Syy && sudo pacman -S archlinuxcn-keyring
+sudo pacman -S yay
   ```
 
 
+
+#### Fix `ERROR: ??? could not be locally signed`
+
+```bash
+rm -fr /etc/pacman.d/gnupg
+pacman-key --init
+pacman-key --populate archlinux
+```
 
 
 
 
 
 # 3. Graphical User Interface
+
+```bash
+sudo pacman -S xf86-video-amdgpu
+# sudo pacman -S xf86-video-intel nvidia nvidia-utils nvidia-settings
+```
+
+
+
+
 
 ## 3.1 Display Server: Xorg
 
@@ -81,6 +114,7 @@ sudo pacman -S xorg
 
 ```bash
 sudo pacman -S xorg-xinit
+
 cp /etc/X11/xinit/xinitrc .xinitrc
 ```
 
@@ -103,7 +137,7 @@ sudo pacman -S xf86-video-amdgpu
 ## 3.3 Window Manager: i3
 
 ```bash
-sudo pacman -S i3-wm i3lock i3status
+sudo pacman -S i3 
 yay -S i3exit
 ```
 
@@ -124,6 +158,8 @@ Clone my config:
 ```bash
 git clone https://github.com/LucasWang474/Dotfiles.git
 
+sudo pacman -S dmenu rofi xfce4-terminal
+
 mkdir .config/i3
 
 cd Dotfiles/i3
@@ -138,7 +174,7 @@ ln i3status.conf ~/.config/i3/i3status.conf
 ### 3.2 Installing Essential Packages
 
 ```bash
-sudo pacman -S xfce4-terminal chromium pcmanfm ttf-font-awesome rofi dmenu noto-fonts
+sudo pacman -S xfce4-terminal chromium pcmanfm ttf-font-awesome rofi dmenu noto-fonts noto-fonts-cjk
 ```
 
 
@@ -153,8 +189,6 @@ Note:
 - To make them work, you can put them in
   - `~/.xprofile`
   - OR in a windows manager config file, like `i3wm`'s `~/.config/i3/config`
-
-
 
 
 
@@ -329,7 +363,7 @@ numlockx &
 ## 5.1 Sound
 
 ```bash
-sudo pacman -S pulseaudio pulseaudio-alsa pulseaudio-equalizer alsa-utils
+sudo pacman -S pulseaudio pulseaudio-bluetooth alsa-utils acpi acpi_call
 
 sudo pacman -S pavucontrol playerctl
 ```
