@@ -137,7 +137,7 @@ sudo pacman -S xf86-video-amdgpu
 ## 3.3 Window Manager: i3
 
 ```bash
-sudo pacman -S i3 
+sudo pacman -S i3
 yay -S i3exit
 ```
 

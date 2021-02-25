@@ -724,6 +724,26 @@ yay -S font-manager
 
 
 
+
+
+## Clash
+
+```bash
+sudo pacman -S clash
+
+cd .config/clash
+
+wget -O config.yaml https://d.cloudso.club/link/????????????clash=1&log-level=info
+
+clash -d ~/.config/clash
+```
+
+
+
+
+
+
+
 ## V2ray
 
 ```bash
@@ -1247,7 +1267,7 @@ alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 ## Systemd
 
 ```bash
-sudo vim /etc/systemd/system.conf
+    sudo vim /etc/systemd/system.conf
 ```
 
 ```bash

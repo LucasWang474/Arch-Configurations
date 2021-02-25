@@ -44,7 +44,7 @@ sudo archlinux-java set java-X-openjdk
 ## Intellij
 
 ```bash
-sudo pacman -S intellij-idea-ultimate-edition
+sudo pacman -S intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre
 ```
 
 
