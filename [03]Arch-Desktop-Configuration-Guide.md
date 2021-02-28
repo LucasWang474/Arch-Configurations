@@ -9,6 +9,30 @@ sudo pacman -S thunar
 
 
 
+### zip 压缩包乱码
+
+> 避免方法：非 utf8 编码环境下（一般 windows 下的中文环境即是）不使用 zip 进行压缩（建议使用 [7z](https://wiki.archlinux.org/index.php/7z_(简体中文)))。 解决方案：安装使用 [unzip-iconv](https://aur.archlinux.org/packages/unzip-iconv/)AUR 或者 [unzip-natspec](https://aur.archlinux.org/packages/unzip-natspec/)AUR 取代原版的 [unzip](https://archlinux.org/packages/?name=unzip) 来解压缩，示例：
+>
+> ```
+> $ unzip -O gbk file.zip
+> ```
+>
+> `file.zip` 是压缩文件，`gbk` 是该文件的编码格式，以 `-O` 指定（原版 unzip 无 `-O` 选项）。
+
+```bash
+yay -S unzip-natspec p7zip-natspec
+```
+
+Then
+
+```bash
+unzip -O gbk file.zip
+```
+
+
+
+
+
 
 
 ## Image
