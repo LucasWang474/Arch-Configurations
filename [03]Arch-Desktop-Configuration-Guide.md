@@ -229,9 +229,41 @@ XMODIFIERS    DEFAULT=\@im=fcitx5
 
 ## Office
 
+### LibreOffice
+
 ```bash
-yay -S wps-office-cn ttf-wps-fonts wps-office-mine-cn wps-office-mui-zh-cn
+yay -S libreoffice-fresh libreoffice-fresh-zh-cn
 ```
+
+
+
+> The Document Foundation [wiki](https://wiki.documentfoundation.org/Fonts) mentions various fonts that are packaged by default with LibreOffice on Windows and macOS. 
+>
+> Also see [Fonts#Font packages](https://wiki.archlinux.org/index.php/Fonts#Font_packages).
+
+```bash
+yay -S ttf-caladea ttf-carlito ttf-dejavu ttf-gentium-basic ttf-liberation ttf-linux-libertine-g noto-fonts adobe-source-code-pro-fonts adobe-source-sans-pro-fonts adobe-source-serif-pro-fonts
+```
+
+
+
+
+
+
+
+
+
+### WPS
+
+```bash
+# yay -S wps-office-cn ttf-wps-fonts wps-office-mine-cn wps-office-mui-zh-cn
+```
+
+
+
+
+
+
 
 
 
@@ -281,8 +313,18 @@ sudo pacman -S netease-cloud-music-gtk
 
 ## Video Player
 
+**THE BEST VIDEO PLAYER EVER: MPV**
+
 ```bash
-sudo pacman -S mplayer mpv vlc
+sudo pacman -S mpv
+```
+
+
+
+Others
+
+```bash
+sudo pacman -S mplayer vlc
 ```
 
 
@@ -642,7 +684,9 @@ xrender-sync-fence = true;
 # Font
 
 ```bash
-sudo pacman -S noto-fonts noto-fonts-emoji noto-fonts-cjk ttf-dejavu ttf-liberation 
+yay -S noto-fonts noto-fonts-emoji noto-fonts-cjk 
+yay -S ttf-dejavu ttf-liberation ttf-symbola 
+yay -S wqy-microhei wqy-microhei-lite adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts adobe-source-han-serif-cn-fonts adobe-source-han-sans-cn-fonts wqy-zenhei wqy-bitmapfont ttf-arphic-ukai 
 yay -S font-manager
 ```
 
@@ -1041,7 +1085,7 @@ sudo pacman -S typora
 yay -S xmind-2020
 ```
 
-Crack: https://www.programmersought.com/article/51234700250/
+Crack: https://ghpym.lanzous.com/b00zd6odc
 
 > Windows crack file works in linux though.
 
