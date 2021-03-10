@@ -21,6 +21,20 @@ yay -S clion
 
 
 
+# Python
+
+## pip
+
+```bash
+sudo pacman -S python-pip
+```
+
+
+
+
+
+
+
 # Java
 
 ```bash
@@ -219,7 +233,8 @@ fish_config
   fisher install jethrokuan/z
   ```
 
-  
+
+
 
 
 
@@ -234,6 +249,18 @@ fish_config
   Add a new abbreviation where `l` will be replaced with `less` universal so all shells. Note that you omit the `-U` since it is the default.
 
 - 
+
+
+
+
+
+### Fix: 'xterm-new': unknown terminal type
+
+```bash
+set TERM xterm-256color
+```
+
+
 
 
 

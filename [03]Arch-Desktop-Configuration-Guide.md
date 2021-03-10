@@ -1355,6 +1355,7 @@ DefaultTimeoutStopSec=5s
 
 ```bash
 xset -b
+# sudo rmmod pcspkr
 ```
 
 
