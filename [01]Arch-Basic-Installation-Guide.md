@@ -662,3 +662,4 @@ If you would prefer better accuracy.
 pacman -S ntp
 systemctl enable --now ntpd
 ```
+

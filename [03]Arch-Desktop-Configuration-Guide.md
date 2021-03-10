@@ -1273,6 +1273,28 @@ mks.gl.allowBlacklistedDrivers = "TRUE"
 
 
 
+### Fix `drag and drop` and `copy and paste` not working
+
+Try running:
+
+```bash
+vmware-user
+```
+
+To make this permanent
+
+```bash
+echo 'vmware-user &' >> ~/.xprofile
+```
+
+
+
+
+
+
+
+
+
 ## Virtual Box
 
 > [Install](https://wiki.archlinux.org/index.php/Install) the [virtualbox](https://www.archlinux.org/packages/?name=virtualbox) package. You will need to choose a package to provide host modules:
