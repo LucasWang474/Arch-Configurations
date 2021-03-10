@@ -1278,13 +1278,15 @@ mks.gl.allowBlacklistedDrivers = "TRUE"
 Try running:
 
 ```bash
-vmware-user
+vmware-user # Tool to enable clipboard sharing (copy/paste) between host and guest.
+vmware-vmblock-fuse # Filesystem utility. Enables drag & drop functionality between host and guest through FUSE
 ```
 
 To make this permanent
 
 ```bash
-echo 'vmware-user &' >> ~/.xprofile
+echo "vmware-user &" >> ~/.xprofile
+echo "vmware-vmblock-fuse &" >> ~/.xprofile
 ```
 
 
