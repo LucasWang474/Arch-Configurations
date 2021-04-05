@@ -1219,9 +1219,53 @@ echo "vmware-vmblock-fuse &" >> ~/.xprofile
 
 
 
+
+
 ### Setup Shared Folder
 
 - `vmhgfs-fuse` - Utility for mounting vmhgfs shared folders.
+
+Share a folder by selecting *Edit virtual machine settings > Options > Shared Folders > Always enabled*, and creating a new share.
+
+The shared folders should be visible with:
+
+```bash
+vmware-hgfsclient
+```
+
+Now the folder can be mounted:
+
+```bash
+mkdir <shared folders root directory>
+vmhgfs-fuse -o allow_other -o auto_unmount .host:/<shared_folder> <shared folders root directory>
+```
+
+Example:
+
+```bash
+mkdir $HOME/SHARED
+vmhgfs-fuse -o allow_other -o auto_unmount .host:/D $HOME/SHARED
+```
+
+
+
+#### fstab
+
+Add a rule for each share:
+
+```bash
+sudo echo '.host:/<shared_folder> <shared folders root directory> fuse.vmhgfs-fuse nofail,allow_other 0 0' >> /etc/fstab
+```
+
+Example:
+
+```bash
+sudo echo '.host:/D $HOME/SHARED fuse.vmhgfs-fuse nofail,allow_other 0 0' >> /etc/fstab
+```
+
+
+
+
 
 
 
