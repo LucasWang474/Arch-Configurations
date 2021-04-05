@@ -65,10 +65,9 @@ sudo reflector -c China -f 10 --save /etc/pacman.d/mirrorlist
   ```bash
   # /etc/pacman.conf
   [archlinuxcn]
-  Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux-cn/$arch
-  # Server = http://mirror.lzu.edu.cn/archlinuxcn/$arch
+  # Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux-cn/$arch
+  Server = http://mirror.lzu.edu.cn/archlinuxcn/$arch
   ```
-
 
 **And** uncomment `#Color`.
 
@@ -128,6 +127,9 @@ And edit `.xinitrc` later.
 
 ```bash
 sudo pacman -S xf86-video-amdgpu
+
+# vmware
+sudo pacman -S xf86-input-vmmouse xf86-video-vmware mesa
 ```
 
 

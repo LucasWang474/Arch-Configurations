@@ -1219,7 +1219,9 @@ echo "vmware-vmblock-fuse &" >> ~/.xprofile
 
 
 
+### Setup Shared Folder
 
+- `vmhgfs-fuse` - Utility for mounting vmhgfs shared folders.
 
 
 
@@ -1287,7 +1289,7 @@ alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 ## Systemd
 
 ```bash
-    sudo vim /etc/systemd/system.conf
+sudo vim /etc/systemd/system.conf
 ```
 
 ```bash
