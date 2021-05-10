@@ -11,13 +11,13 @@ yay -S visual-studio-code-bin
 
 Press `Ctrl+,` to open `Settings`, then search `proxy`.
 
-![image-20210124184029107]([04]Arch-Development-Configuration-Guide.assets/image-20210124184029107-1620644640185.png)
+![image-20210124184029107]([04]Arch-Development-Configuration-Guide.assets/image-20210124184029107.png)
 
 **Note that the port `2080`** depends on your configuration in the proxy software, like `qv2ray`.
 
 And this is my setting in `qv2ray`, just a reference.
 
-![image-20210124184256646]([04]Arch-Development-Configuration-Guide.assets/image-20210124184256646-1620644640186.png)
+![image-20210124184256646]([04]Arch-Development-Configuration-Guide.assets/image-20210124184256646.png)
 
 
 
@@ -155,7 +155,8 @@ sudo ln -s ~/.config/fish/fish_variables /opt/intellij-idea-ultimate-edition/plu
 Run
 
 ```bash
-git config --global user.email "you@example.com"git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
 ```
 
 to set your account's default identity.
@@ -170,9 +171,9 @@ Omit `--global` to set the identity only in this repository.
 
 - Make Git store the user name and password and it will never ask for them.
 
-  ```bash
-  git config --global credential.helper store
-  ```
+    ```bash
+    git config --global credential.helper store
+    ```
 
 
 
@@ -183,7 +184,21 @@ Omit `--global` to set the identity only in this repository.
 `~/.vimrc`:
 
 ```bash
-set clipboard=unnamedplusfiletype plugin onsyntax onset numberset relativenumber"set spellset incsearchset hlsearch
+set clipboard=unnamedplus
+
+filetype plugin on
+
+syntax on
+
+set number
+
+set relativenumber
+
+"set spell
+
+set incsearch
+
+set hlsearch
 ```
 
 
@@ -199,7 +214,8 @@ You can `:set clipboard=unnamedplus` to use the `"+` register instead. The `"+` 
 To enable syntax highlighting for many programming languages:
 
 ```
-:filetype plugin on:syntax on
+:filetype plugin on
+:syntax on
 ```
 
 
@@ -249,7 +265,13 @@ set hlsearch
 ## Fish
 
 ```bash
-sudo pacman -S fishyay -S fisherset -U fish_greeting ""fish_config
+sudo pacman -S fish
+
+yay -S fisher
+
+set -U fish_greeting ""
+
+fish_config
 ```
 
 
@@ -260,9 +282,9 @@ sudo pacman -S fishyay -S fisherset -U fish_greeting ""fish_config
 
 - [fish-abbreviation-tips](https://github.com/Gazorby/fish-abbreviation-tips)
 
-  ```bash
-  fisher install Gazorby/fish-abbreviation-tips
-  ```
+    ```bash
+    fisher install Gazorby/fish-abbreviation-tips
+    ```
 
 - [z](https://github.com/jethrokuan/z) 
 
@@ -282,21 +304,12 @@ sudo pacman -S fishyay -S fisherset -U fish_greeting ""fish_config
 #### abbr
 
 - ```bash
-  abbr -a -U l ls
+  abbr -a -U l less
   ```
 
   Add a new abbreviation where `l` will be replaced with `less` universal so all shells. Note that you omit the `-U` since it is the default.
 
-
-
-
-#### Start-up message
-
-Edit `~/.config/fish/config.fish`.
-
-
-
-
+- 
 
 
 
@@ -332,35 +345,35 @@ trash-cli
 
 - [Oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 
-  ```bash
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  ```
+    ```bash
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    ```
 
 - [Syntax highlight](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
 
-  ```bash
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  ```
+    ```bash
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    ```
 
 - Autojump
 
-  ```bash
-  sudo pacman -S autojump
-  ```
+    ```bash
+    sudo pacman -S autojump
+    ```
 
-  Edit `~/.zshrc`:
+    Edit `~/.zshrc`:
 
-  ```bash
-  source /etc/profile.d/autojump.sh
-  ```
+    ```bash
+    source /etc/profile.d/autojump.sh
+    ```
 
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md)
 
-  ```bash
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  ```
+    ```bash
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    ```
 
-  
+    
 
 
 
@@ -380,5 +393,5 @@ trash-cli
 yay -S besttrace
 ```
 
-![image-20210125213137084]([04]Arch-Development-Configuration-Guide.assets/image-20210125213137084-1620644640186.png)
+![image-20210125213137084]([04]Arch-Development-Configuration-Guide.assets/image-20210125213137084.png)
 
