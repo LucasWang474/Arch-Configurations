@@ -1,3 +1,9 @@
+This repository has been archived. For new, see [LucasWang474/My-OS-Workflow: My operating system workflow. (Windows 10 + ArchLinux VM + Windows Terminal + VSCode) (github.com)](https://github.com/LucasWang474/My-OS-Workflow).
+
+
+
+
+
 # Arch-Configurations
 
 This repository will teach you how to build up a fully featured Arch Linux desktop environment from the outset.
