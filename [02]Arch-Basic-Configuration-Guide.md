@@ -9,7 +9,7 @@ useradd -s /bin/fish -mG wheel,audio,video,optical,storage lucas
 usermod -c 'Lucas Wang' lucas
 
 passwd lucas
-
+	
 pacman -S xdg-utils xdg-user-dirs
 ```
 
@@ -26,8 +26,10 @@ EDITOR=vim visudo
 ## 1.2 System Maintenance
 
 ```bash
-sudo pacman -S tlp powertop
-sudo systemctl enable tlp
+sudo pacman -S tlp powertop # laptop 电源管理
+sudo systemctl enable tlp 
+
+
 sudo systemctl enable --now fstrim.timer
 ```
 
@@ -86,22 +88,25 @@ sudo pacman -S yay
 rm -fr /etc/pacman.d/gnupg
 pacman-key --init
 pacman-key --populate archlinux
+# pacman-key --populate arcolinux
+# pacman-key --populate archlinuxcn
 ```
+
+Or try this:
+
+```bash
+pacman -S archlinux-keyring
+# pacman -S arcolinux-keyring
+# pacman -S archlinuxcn-keyring
+```
+
+
 
 
 
 
 
 # 3. Graphical User Interface
-
-```bash
-sudo pacman -S xf86-video-amdgpu
-# sudo pacman -S xf86-video-intel nvidia nvidia-utils nvidia-settings
-```
-
-
-
-
 
 ## 3.1 Display Server: Xorg
 
@@ -112,9 +117,7 @@ sudo pacman -S xorg
 ### 3.1.1 xinit
 
 ```bash
-sudo pacman -S xorg-xinit
-
-cp /etc/X11/xinit/xinitrc .xinitrc
+sudo pacman -S xorg-xinitcp /etc/X11/xinit/xinitrc .xinitrc
 ```
 
 And edit `.xinitrc` later.
@@ -126,10 +129,7 @@ And edit `.xinitrc` later.
 ## 3.2 Display Drivers
 
 ```bash
-sudo pacman -S xf86-video-amdgpu
-
-# vmware
-sudo pacman -S xf86-input-vmmouse xf86-video-vmware mesa
+sudo pacman -S xf86-video-amdgpu# sudo pacman -S xf86-video-intel nvidia nvidia-utils nvidia-settings# vmwaresudo pacman -S xf86-input-vmmouse xf86-video-vmware mesa
 ```
 
 
@@ -139,8 +139,7 @@ sudo pacman -S xf86-input-vmmouse xf86-video-vmware mesa
 ## 3.3 Window Manager: i3
 
 ```bash
-sudo pacman -S i3
-yay -S i3exit
+sudo pacman -S i3yay -S i3exit
 ```
 
 Edit `.xinitrc`:
@@ -158,15 +157,7 @@ exec i3
 Clone my config:
 
 ```bash
-git clone https://github.com/LucasWang474/Dotfiles.git
-
-sudo pacman -S dmenu rofi xfce4-terminal
-
-mkdir .config/i3
-
-cd Dotfiles/i3
-ln config ~/.config/i3/config
-ln i3status.conf ~/.config/i3/i3status.conf
+git clone https://github.com/LucasWang474/Dotfiles.gitsudo pacman -S dmenu rofi xfce4-terminalmkdir .config/i3cd Dotfiles/i3ln config ~/.config/i3/configln i3status.conf ~/.config/i3/i3status.conf
 ```
 
 
@@ -197,10 +188,7 @@ Note:
 ### 3.4.1 SDDM
 
 ```bash
-yay -S sddm sddm-sugar-candy-git
-
-# you can use proxychains to proxy pacman, like:
-# proxychains yay -S sddm
+yay -S sddm sddm-sugar-candy-git# you can use proxychains to proxy pacman, like:# proxychains yay -S sddm
 ```
 
 Preview of `sddm-sugar-candy-git`:
@@ -209,7 +197,7 @@ Preview of `sddm-sugar-candy-git`:
 sddm-greeter --test-mode --theme /usr/share/sddm/themes/sugar-candy
 ```
 
-![image-20210125090528275]([02]Arch-Basic-Configuration-Guide.assets/image-20210125090528275.png)
+![image-20210125090528275]([02]Arch-Basic-Configuration-Guide.assets/image-20210125090528275-1620644621141.png)
 
 
 
@@ -231,7 +219,7 @@ sudo systemctl enable sddm.service
 
 `sudo vim /usr/lib/sddm/sddm.conf.d/default.conf` to add the `sugar-candy` theme we just installed:
 
-![image-20210125090223416]([02]Arch-Basic-Configuration-Guide.assets/image-20210125090223416.png)
+![image-20210125090223416]([02]Arch-Basic-Configuration-Guide.assets/image-20210125090223416-1620644621142.png)
 
 
 
@@ -244,8 +232,7 @@ Now you can `reboot` or `loggout`(if you have stopped another display manager).
 ### 3.4.2 Lightdm
 
 ```bash
-sudo pacman -S lightdm lightdm-webkit2-greeter lightdm-webkit-theme-litarvan
-sudo systemctl enable lightdm
+sudo pacman -S lightdm lightdm-webkit2-greeter lightdm-webkit-theme-litarvansudo systemctl enable lightdm
 ```
 
 **Then **
@@ -259,8 +246,7 @@ sudo systemctl enable lightdm
 - **Edit** `/etc/lightdm/lightdm-webkit2-greeter.conf` and **set**
 
   ```bash
-  detect_theme_errors = false
-  webkit-theme = litarvan
+  detect_theme_errors = falsewebkit-theme = litarvan
   ```
 
 
@@ -286,10 +272,7 @@ brightnessctl set 15% &
 If you are using `i3wm`, edit its config file:
 
 ```bash
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q s +5%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -q s 5%-
-
-# exec --no-startup-id brightnessctl set 25% & # default brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q s +5%bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl -q s 5%-# exec --no-startup-id brightnessctl set 25% & # default brightness
 ```
 
 
@@ -365,9 +348,6 @@ numlockx &
 ## 5.1 Sound
 
 ```bash
-sudo pacman -S pulseaudio pulseaudio-bluetooth alsa-utils acpi acpi_call
-
-sudo pacman -S pavucontrol playerctl
+sudo pacman -S pulseaudio pulseaudio-bluetooth alsa-utils acpi acpi_callsudo pacman -S pavucontrol playerctl
 ```
-
 

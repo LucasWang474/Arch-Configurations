@@ -52,9 +52,9 @@ wget https://mirrors.sjtug.sjtu.edu.cn/archlinux/iso/2021.02.01/archlinux-2021.0
 - Windows
 
   - [Rufus - The Official Website (Download, New Releases)](https://rufus.ie/)
-  
+
     > **Note: If the USB drive does not boot properly using the default ISO Image mode, DD Image mode should be used instead.**
-  
+
   - [USBWriter download | SourceForge.net](https://sourceforge.net/projects/usbwriter/)
 
 
@@ -168,10 +168,10 @@ The following [partitions](https://wiki.archlinux.org/index.php/Partition) are *
 
 
 
-Partition your hard drive (`/dev/sda` will be used in this guide) with **`fdisk`** or **`cfdisk`**, the partition numbers and order are at your discretion:
+Partition your hard drive (`/dev/sda` will be used in this guide) with **`fdisk`** or **`gdisk`**, the partition numbers and order are at your discretion:
 
 ```bash
-cfdisk /dev/sda
+gdisk /dev/sda
 ```
 
 **UEFI with** [GPT](https://wiki.archlinux.org/index.php/GPT)
@@ -202,11 +202,7 @@ mount /dev/sda2 /mnt; mkdir /mnt/boot; mount /dev/sda1 /mnt/boot
 ```
 
 ```bash
-root@archiso ~ # lsblk
-NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
-sda      8:0    0    60G  0 disk 
-├─sda1   8:1    0   500M  0 part /mnt/boot
-└─sda2   8:2    0  59.5G  0 part /mnt
+root@archiso ~ # lsblkNAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTsda      8:0    0    60G  0 disk ├─sda1   8:1    0   500M  0 part /mnt/boot└─sda2   8:2    0  59.5G  0 part /mnt
 ```
 
 [genfstab(8)](https://jlk.fjfi.cvut.cz/arch/manpages/man/genfstab.8) will later detect mounted file systems and swap space.
@@ -222,7 +218,7 @@ sda      8:0    0    60G  0 disk
 ## 1.1 Select the Mirrors
 
 ```bash
-reflector -c China -f 10 --save /etc/pacman.d/mirrorlist; cat /etc/pacman.d/mirrorlist
+reflector -c China --sort rate --save /etc/pacman.d/mirrorlist; cat /etc/pacman.d/mirrorlist
 ```
 
 If the command above does not work, edit it manually.
@@ -240,7 +236,7 @@ vim /etc/pacman.d/mirrorlist
 ## 1.2 Install Essential Packages
 
 ```bash
-pacstrap /mnt base base-devel linux linux-firmware linux-headers amd-ucode vim bash fish reflector git openssh
+pacstrap /mnt base base-devel linux linux-firmware linux-headers amd-ucode vim bash fish reflector rsync git openssh neofetch
 ```
 
 
@@ -280,8 +276,7 @@ First create a swap partition using `fdisk` or `cfdsik`.
 Then
 
 ```bash
-mkswap /dev/sd?
-swapon /dev/sd?
+mkswap /dev/sd?swapon /dev/sd?
 ```
 
 To enable this swap partition on boot, add an entry to `/etc/fstab`:
@@ -317,9 +312,7 @@ Use [dd](https://wiki.archlinux.org/index.php/Dd) to create a swap file the size
 For example:
 
 ```bash
-dd if=/dev/zero of=/swapfile bs=1M count=512 status=progress # 512M
-
-dd if=/dev/zero of=/swapfile bs=1G count=9 status=progress # 9G
+dd if=/dev/zero of=/swapfile bs=1M count=512 status=progress # 512Mdd if=/dev/zero of=/swapfile bs=1G count=9 status=progress # 9G
 ```
 
 Then
@@ -335,8 +328,7 @@ chmod 600 /swapfile; mkswap /swapfile; swapon /swapfile; echo "/swapfile none sw
 To remove a swap file, it must be turned off first and then can be removed:
 
 ```bash
-swapoff /swapfile
-rm -f /swapfile
+swapoff /swapfilerm -f /swapfile
 ```
 
 Finally remove the relevant entry from `/etc/fstab`.
@@ -360,16 +352,13 @@ ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime; timedatectl set-ntp tru
 **First edit `/etc/locale.gen`** and uncomment 
 
 ```bash
-en_US.UTF-8 UTF-8
-zh_CN.UTF-8 UTF-8
+en_US.UTF-8 UTF-8zh_CN.UTF-8 UTF-8
 ```
 
 A quick way of doing so is using *sed* with the command below.
 
 ```bash
-sed 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' -i /etc/locale.gen
-
-sed 's/#zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' -i /etc/locale.gen
+sed 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' -i /etc/locale.gensed 's/#zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' -i /etc/locale.gen
 ```
 
 **Then **Generate the locales:
@@ -399,11 +388,7 @@ echo "arch" > /etc/hostname
 **Then** add matching entries to [hosts(5)](https://jlk.fjfi.cvut.cz/arch/manpages/man/hosts.5):
 
 ```bash
-cat > /etc/hosts << EOF
-127.0.0.1    localhost
-::1          localhost
-127.0.1.1    arch.localdomain arch
-EOF
+cat > /etc/hosts << EOF127.0.0.1    localhost::1          localhost127.0.1.1    arch.localdomain archEOF
 ```
 
 
@@ -419,8 +404,7 @@ pacman -S dhcpcd
 Make DHCP automatically run at boot.
 
 ```bash
-systemctl enable systemd-networkd
-systemctl enable dhcpcd
+systemctl enable systemd-networkdsystemctl enable dhcpcd
 ```
 
 Make DNS resolution automatically run at boot.
@@ -448,9 +432,7 @@ vim /etc/ssh/sshd_config
 ```
 
 ```bash
-#PermitRootLogin prohibit-password
-PermitRootLogin yes
-PasswordAuthentication yes
+#PermitRootLogin prohibit-passwordPermitRootLogin yesPasswordAuthentication yes
 ```
 
 Then finally enable the SSH daemon on the console.
@@ -470,9 +452,7 @@ systemctl enable sshd
 **Install network manager:**
 
 ```bash
-pacman -S networkmanager network-manager-applet wpa_supplicant dialog 
-
-systemctl enable NetworkManager
+pacman -S networkmanager network-manager-applet wpa_supplicant dialog systemctl enable NetworkManager
 ```
 
 
@@ -556,11 +536,7 @@ passwd lucas
 Allow members in group `wheel` to use `sudo`.
 
 ```bash
-cp /etc/sudoers /etc/sudoers.new
-
-sed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' -i /etc/sudoers.new
-
-visudo -c -f /etc/sudoers.new && mv /etc/sudoers.new /etc/sudoers
+cp /etc/sudoers /etc/sudoers.newsed 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' -i /etc/sudoers.newvisudo -c -f /etc/sudoers.new && mv /etc/sudoers.new /etc/sudoers
 ```
 
 Now, SSH daemon is already running **but the settings allow root to log in which can be insecure.** Revert the changes made to the sshd_config file by swapping it to the default config we backed up earlier.
@@ -588,8 +564,7 @@ Once you have created a new SSH key pair, copy over the public part to your Arch
 Then on the cloud server, change into your new user account and create the following directory.
 
 ```bash
-su lucas
-mkdir ~/.ssh
+su lucasmkdir ~/.ssh
 ```
 
 The public SSH key should be saved to file at `/home/username/.ssh/authorized_keys`. Open a new file in a text editor, for example, by using `nano` and copy the public SSH key into this file.
@@ -659,7 +634,6 @@ systemctl enable --now systemd-timesyncd
 If you would prefer better accuracy.
 
 ```bash
-pacman -S ntp
-systemctl enable --now ntpd
+pacman -S ntpsystemctl enable --now ntpd
 ```
 
