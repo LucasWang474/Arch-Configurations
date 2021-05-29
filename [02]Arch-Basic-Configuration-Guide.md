@@ -51,7 +51,7 @@ sudo systemctl enable --now fstrim.timer
 
 ```bash
 sudo pacman -S rsync
-sudo reflector -c China -f 10 --save /etc/pacman.d/mirrorlist
+sudo reflector -c China --save /etc/pacman.d/mirrorlist --sort rate
 
 # sudo systemctl enable --now reflector.timer
 ```
@@ -86,6 +86,7 @@ sudo pacman -S yay
 rm -fr /etc/pacman.d/gnupg
 pacman-key --init
 pacman-key --populate archlinux
+pacman-key --populate archlinuxcn
 ```
 
 
@@ -93,15 +94,6 @@ pacman-key --populate archlinux
 
 
 # 3. Graphical User Interface
-
-```bash
-sudo pacman -S xf86-video-amdgpu
-# sudo pacman -S xf86-video-intel nvidia nvidia-utils nvidia-settings
-```
-
-
-
-
 
 ## 3.1 Display Server: Xorg
 
@@ -127,6 +119,8 @@ And edit `.xinitrc` later.
 
 ```bash
 sudo pacman -S xf86-video-amdgpu
+
+# sudo pacman -S xf86-video-intel nvidia nvidia-utils nvidia-settings
 
 # vmware
 sudo pacman -S xf86-input-vmmouse xf86-video-vmware mesa
@@ -369,5 +363,4 @@ sudo pacman -S pulseaudio pulseaudio-bluetooth alsa-utils acpi acpi_call
 
 sudo pacman -S pavucontrol playerctl
 ```
-
 

@@ -105,7 +105,7 @@ pacman -Syy
 
 
 
-### Login via ssh
+### Login via SSH
 
 Start the SSH server.
 
@@ -168,10 +168,10 @@ The following [partitions](https://wiki.archlinux.org/index.php/Partition) are *
 
 
 
-Partition your hard drive (`/dev/sda` will be used in this guide) with **`fdisk`** or **`cfdisk`**, the partition numbers and order are at your discretion:
+Partition your hard drive (`/dev/sda` will be used in this guide) with **`fdisk`**, **`gdisk`**, or **`cfdisk`**, the partition numbers and order are at your discretion:
 
 ```bash
-cfdisk /dev/sda
+gdisk /dev/sda
 ```
 
 **UEFI with** [GPT](https://wiki.archlinux.org/index.php/GPT)
@@ -188,7 +188,8 @@ cfdisk /dev/sda
 ## 0.8 Format the Partitions
 
 ```bash
-mkfs.fat -F32 /dev/sda1; mkfs.ext4 /dev/sda2
+mkfs.fat -F32 /dev/sda1
+mkfs.ext4 /dev/sda2
 ```
 
 
@@ -198,7 +199,9 @@ mkfs.fat -F32 /dev/sda1; mkfs.ext4 /dev/sda2
 ## 0.8 Mount the File Systems
 
 ```bash
-mount /dev/sda2 /mnt; mkdir /mnt/boot; mount /dev/sda1 /mnt/boot
+mount /dev/sda2 /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
 ```
 
 ```bash
@@ -222,7 +225,8 @@ sda      8:0    0    60G  0 disk
 ## 1.1 Select the Mirrors
 
 ```bash
-reflector -c China -f 10 --save /etc/pacman.d/mirrorlist; cat /etc/pacman.d/mirrorlist
+reflector -c China --save /etc/pacman.d/mirrorlist --sort rate
+cat /etc/pacman.d/mirrorlist
 ```
 
 If the command above does not work, edit it manually.
@@ -240,7 +244,7 @@ vim /etc/pacman.d/mirrorlist
 ## 1.2 Install Essential Packages
 
 ```bash
-pacstrap /mnt base base-devel linux linux-firmware linux-headers amd-ucode vim bash fish reflector git openssh
+pacstrap /mnt base base-devel linux linux-firmware linux-headers amd-ucode vim bash fish rsync reflector git openssh neofetch
 ```
 
 
@@ -250,7 +254,8 @@ pacstrap /mnt base base-devel linux linux-firmware linux-headers amd-ucode vim b
 ## 1.3 Fstab
 
 ```bash
-genfstab -U /mnt >> /mnt/etc/fstab; cat /mnt/etc/fstab # check
+genfstab -U /mnt >> /mnt/etc/fstab
+cat /mnt/etc/fstab # check
 ```
 
 
@@ -348,7 +353,10 @@ Finally remove the relevant entry from `/etc/fstab`.
 ## 2.3 Time Zone
 
 ```bash
-ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime; timedatectl set-ntp true; hwclock --systohc; date # check
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+timedatectl set-ntp true
+hwclock --systohc
+date # check
 ```
 
 
@@ -498,7 +506,8 @@ pacman -S grub efibootmgr dosfstools mtools ntfs-3g os-prober
 ```
 
 ```bash
-grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB; grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 
