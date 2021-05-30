@@ -21,7 +21,7 @@ Use `wget`:
 ```bash
 cd Downloads
 
-wget https://mirrors.sjtug.sjtu.edu.cn/archlinux/iso/2021.02.01/archlinux-2021.02.01-x86_64.iso
+wget https://mirrors.sjtug.sjtu.edu.cn/archlinux/iso/2021.05.01/archlinux-2021.05.01-x86_64.iso
 ```
 
 
@@ -69,7 +69,7 @@ wget https://mirrors.sjtug.sjtu.edu.cn/archlinux/iso/2021.02.01/archlinux-2021.0
 
 1. Plug in your USB and press `F2`, `F12` or something else during the [POST](https://en.wikipedia.org/wiki/Power-on_self_test) phase.
 
-2. Select the first column.
+2. Select the corresponding USB row.
 
 3. Then you will be logged in on the first [virtual console](https://en.wikipedia.org/wiki/Virtual_console) as the root user, and presented with a [Zsh](https://wiki.archlinux.org/index.php/Zsh) shell prompt.
 
@@ -105,19 +105,23 @@ pacman -Syy
 
 
 
-### Login via SSH
+### Trick: Login via SSH
 
-Start the SSH server.
+In ArchISO, start the SSH server.
 
 ```bash
 systemctl start sshd
 ```
+
+
 
 Then check that the SSH server is running.
 
 ```bash
 systemctl status sshd
 ```
+
+
 
 Once SSH is running, take note of your public IP address using the command below.
 
@@ -126,6 +130,16 @@ ip addr
 ```
 
 The second interface and the first called *ens** should have your public IPv4 address. 
+
+
+
+And you also have to set password for ArchISO.
+
+```bash
+passwd
+```
+
+
 
 You are now ready to log in to the cloud server with SSH from your computer.
 
@@ -315,7 +329,7 @@ And remove the relevant entry from `/etc/fstab`.
 
 
 
-### 2.2.2 Swap Device
+### 2.2.2 Swap File
 
 Use [dd](https://wiki.archlinux.org/index.php/Dd) to create a swap file the size of your choosing. 
 

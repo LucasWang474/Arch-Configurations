@@ -39,31 +39,6 @@ And this is my setting in `qv2ray`, just a reference.
 
 
 
-
-
-# C
-
-```bash
-sudo pacman -S gcc cmake gdb lldb
-```
-
-
-
-
-
-## Clion
-
-```bash
-yay -S clion 
-# yay -S clion-cmake clion-gdb clion-jre clion-lldb # optional
-```
-
-
-
-
-
-
-
 # Python
 
 ## pip
@@ -268,19 +243,29 @@ set hlsearch
 
 ## Fish
 
+Install:
+
 ```bash
 sudo pacman -S fish
 
 yay -S fisher
 
 set -U fish_greeting ""
-
-fish_config
 ```
 
 
 
-**Plugins**
+
+
+### Configuration
+
+> The configuration file runs at every login and is located at `~/.config/fish/config.fish`. Adding commands or functions to the file will execute/define them when opening a terminal, similar to `.bashrc`. 
+
+
+
+
+
+### Plugins
 
 > - [awesome.fish](https://github.com/jorgebucaran/awesome.fish)
 
@@ -313,7 +298,8 @@ fish_config
 
   Add a new abbreviation where `l` will be replaced with `less` universal so all shells. Note that you omit the `-U` since it is the default.
 
-- 
+
+
 
 
 
@@ -377,25 +363,4 @@ trash-cli
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     ```
 
-    
-
-
-
-
-
-
-
-
-
-
-
-# Web
-
-## Route trace
-
-```bash
-yay -S besttrace
-```
-
-![image-20210125213137084]([04]Arch-Development-Configuration-Guide.assets/image-20210125213137084.png)
 
