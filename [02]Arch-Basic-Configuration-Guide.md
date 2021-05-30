@@ -391,3 +391,14 @@ sudo pacman -S pavucontrol playerctl
 sudo pacman -S mpv
 ```
 
+
+
+### [Hardware video acceleration](https://wiki.archlinux.org/title/Hardware_video_acceleration)
+
+```bash
+# AMD
+sudo pacman -S libva-mesa-driver mesa-vdpau
+```
+
+
+

@@ -1,5 +1,61 @@
 # Basic
 
+## Input Method: fcitx with sogoupinyin
+
+### Install
+
+```bash
+yay -S fcitx-im fcitx-configtool fcitx-qt5 fcitx-sogoupinyin fcitx-qt4
+```
+
+**Set environment variables for IM modules**
+
+Edit `~/.pam_environment`:
+
+```bash
+GTK_IM_MODULE DEFAULT=fcitx
+QT_IM_MODULE  DEFAULT=fcitx
+XMODIFIERS    DEFAULT=\@im=fcitx
+```
+
+
+
+### Configuration
+
+Run
+
+```bash
+fcitx
+fcitx-configtool
+```
+
+
+
+**Set auto start:**
+
+- Method 1
+
+  Edit `i3wm` config:
+
+  ```bash
+  exec --no-startup-id fcitx-autostart
+  ```
+
+- Method 2
+
+  Edit `~/.xinit`
+
+  ```bash
+  fcitx-autostart &
+  ```
+
+
+
+
+
+
+
+
 ## File Browser
 
 ```bash
@@ -99,12 +155,6 @@ sudo pacman -S
 
 
 
-```
-sudo pacman -S simple-scan
-```
-
-
-
 
 
 ## Clock
@@ -141,122 +191,6 @@ sudo systemctl enable bluetooth
 
 
 
-
-## Input
-
-### Touchpad
-
-#### Bug Fix: Lenovo Xiaoxin 15
-
-The touchpad won't work out of the box most of the time. You need to unbind it from `elants_i2c` before binding it to `i2c_hid`.
-
-**Run the below commands by switching to root user.**
-
-```bash
-su
-
-modprobe i2c_hid
-
-echo "i2c-ELAN0001:00" > /sys/bus/i2c/drivers/i2c_hid/bind
-
-echo "i2c-ELAN0001:00" > /sys/bus/i2c/drivers/elants_i2c/unbind
-```
-
-The module `elants_i2c` now needs to be blacklisted, so you don't have to unbind and bind each time
-
-```bash
-echo "blacklist elants_i2c" | tee /etc/modprobe.d/touchpad.conf
-```
-
-
-
-#### Configuration
-
-```bash
-sudo pacman -S xf86-input-synaptics
-```
-
-
-
- After installation of `xf86-input-synaptics`, a default configuration file is located at `/usr/share/X11/xorg.conf.d/70-synaptics.conf`. Users can copy this file to `/etc/X11/xorg.conf.d/` and edit it to configure the various driver options available. 
-
-```bash
-sudo ln -s 70-synaptics.conf /etc/X11/xorg.conf.d/
-```
-
-
-
-
-
-
-
-### Input Method
-
-#### fcitx with sogoupinyin
-
-```bash
-yay -S fcitx fcitx-configtool fcitx-qt5 fcitx-sogoupinyin fcitx-qt4
-```
-
-**Set environment variables for IM modules**
-
-Edit `~/.pam_environment`:
-
-```bash
-GTK_IM_MODULE DEFAULT=fcitx
-QT_IM_MODULE  DEFAULT=fcitx
-XMODIFIERS    DEFAULT=@im=fcitx
-```
-
-
-
-Now run `fcitx-configtool`.
-
-
-
-**Set auto start:**
-
-- Method 1
-
-  Edit `i3wm` config:
-
-  ```bash
-  exec --no-startup-id fcitx-autostart
-  ```
-
-- Method 2
-
-  Edit `~/.xinit`
-
-  ```bash
-  fcitx-autostart &
-  ```
-
-  
-
-
-
-#### fcitx5
-
-```bash
-sudo pacman -S fcitx5-im fcitx5-chinese-addons
-```
-
-> [fcitx5-im](https://www.archlinux.org/groups/x86_64/fcitx5-im/) group provides [fcitx5](https://www.archlinux.org/packages/?name=fcitx5) ontology, [#Configuration tool](https://wiki.archlinux.org/index.php/Fcitx5#Configuration_tool), and all [#Input method module](https://wiki.archlinux.org/index.php/Fcitx5#Input_method_module) except [fcitx5-qt4-git](https://aur.archlinux.org/packages/fcitx5-qt4-git/)AUR.
-
-
-
-**Set environment variables for IM modules**
-
-To enable Fcitx5 normally in the program, you must set the following environment variables and log in again:
-
-```
-~/.pam_environment
-INPUT_METHOD  DEFAULT=fcitx5
-GTK_IM_MODULE DEFAULT=fcitx5
-QT_IM_MODULE  DEFAULT=fcitx5
-XMODIFIERS    DEFAULT=\@im=fcitx5
-```
 
 
 
