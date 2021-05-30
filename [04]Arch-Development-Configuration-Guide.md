@@ -2,8 +2,13 @@
 
 ```bash
 yay -S visual-studio-code-bin
-# sudo pacman -S nodejs npm 
 ```
+
+
+
+## Sync
+
+Login to sync settings.
 
 
 
@@ -23,11 +28,10 @@ And this is my setting in `qv2ray`, just a reference.
 
 
 
-
-
 ## Remote
 
-
+- Extensions
+  - Remote - SSH
 
 
 
@@ -40,7 +44,7 @@ And this is my setting in `qv2ray`, just a reference.
 # C
 
 ```bash
-yay -S gcc cmake gdb lldb
+sudo pacman -S gcc cmake gdb lldb
 ```
 
 
@@ -116,7 +120,7 @@ sudo archlinux-java set java-X-openjdk
 
 
 
-## Intellij
+## IDEA
 
 ```bash
 sudo pacman -S intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre
@@ -126,7 +130,7 @@ sudo pacman -S intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre
 
 
 
-### Intellij's official tutorial (Highly recommend)
+### IDEA's official tutorial (Highly recommend)
 
 Press `Ctrl+Shift+A` and search `learn`, then `enter`.
 

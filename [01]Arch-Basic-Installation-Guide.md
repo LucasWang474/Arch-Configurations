@@ -389,7 +389,17 @@ locale-gen
 **Lastly** create the [locale.conf(5)](https://jlk.fjfi.cvut.cz/arch/manpages/man/locale.conf.5) file, and [set the LANG variable](https://wiki.archlinux.org/index.php/Locale#Setting_the_system_locale) accordingly:
 
 ```bash
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
+LANG=en_US.UTF-8
+LC_ADDRESS=en_US.UTF-8
+LC_IDENTIFICATION=en_US.UTF-8
+LC_MEASUREMENT=en_US.UTF-8
+LC_MONETARY=en_US.UTF-8
+LC_NAME=en_US.UTF-8
+LC_NUMERIC=en_US.UTF-8
+LC_PAPER=en_US.UTF-8
+LC_TELEPHONE=en_US.UTF-8
+# LC_TIME=en_US.UTF-8
+LC_TIME=zh_CN.UTF-8
 ```
 
 
@@ -502,7 +512,8 @@ passwd
 ## 2.7 Boot Loader
 
 ```bash
-pacman -S grub efibootmgr dosfstools mtools ntfs-3g os-prober
+pacman -S grub efibootmgr dosfstools mtools ntfs-3g
+# pacman -S os-prober # multi boot
 ```
 
 ```bash

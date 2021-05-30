@@ -263,6 +263,17 @@ yay -S ttf-caladea ttf-carlito ttf-dejavu ttf-gentium-basic ttf-liberation ttf-l
 
 
 
+## Downloads
+
+### BaiduNetdisk
+
+```bash
+yay -S baidunetdisk-bin
+sudo ln -s /usr/lib/baidunetdisk/baidunetdisk /usr/bin/baidunetdisk
+```
+
+
+
 
 
 
@@ -1453,5 +1464,4 @@ sudo mkinitcpio -p linux
 ```
 
 Now reboot.
-
 
