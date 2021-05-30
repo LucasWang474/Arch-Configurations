@@ -41,6 +41,10 @@ sudo systemctl enable --now fstrim.timer
 
 ## 2.1 Pacman
 
+```bash
+sudo pacman -S pamac-all
+```
+
 
 
 

@@ -3,8 +3,7 @@
 ## File Browser
 
 ```bash
-sudo pacman -S pcmanfm file-roller p7zip unrar
-sudo pacman -S thunar
+sudo pacman -S thunar file-roller p7zip unrar
 ```
 
 
@@ -33,14 +32,48 @@ unzip -O gbk file.zip
 
 
 
+## Downloader
+
+### BaiduNetdisk
+
+```bash
+yay -S baidunetdisk-bin
+sudo ln -s /usr/lib/baidunetdisk/baidunetdisk /usr/bin/baidunetdisk
+```
+
+Tip: Change zoom level with `Ctrl+Shift+=` or `Ctrl+Shift+-`.
+
+
+
+### Xunlei
+
+```bash
+yay -S xunlei-bin
+```
+
+
+
 
 
 ## Image
 
+### Viewer
+
 ```bash
-sudo pacman -S nomacs imagemagick gwenview feh
-# sudo pacman -S gpicview gthumb
+sudo pacman -S feh imagemagick
 ```
+
+
+
+### Editor
+
+#### Gimp
+
+```bash
+sudo pacman -S gimp
+```
+
+
 
 
 
@@ -48,9 +81,25 @@ sudo pacman -S nomacs imagemagick gwenview feh
 
 ## PDF
 
-```bash
-sudo pacman -S okular evince
+### General
 
+```bash
+sudo pacman -S okular
+```
+
+
+
+### Editor
+
+```bash
+sudo pacman -S 
+```
+
+
+
+
+
+```
 sudo pacman -S simple-scan
 ```
 
@@ -63,18 +112,6 @@ sudo pacman -S simple-scan
 ```bash
 sudo pacman -S gnome-clocks
 ```
-
-
-
-
-
-## Download
-
-```bash
-sudo pacman -S uget aria2 qbittorrent
-```
-
-
 
 
 
@@ -262,15 +299,6 @@ yay -S ttf-caladea ttf-carlito ttf-dejavu ttf-gentium-basic ttf-liberation ttf-l
 
 
 
-
-## Downloads
-
-### BaiduNetdisk
-
-```bash
-yay -S baidunetdisk-bin
-sudo ln -s /usr/lib/baidunetdisk/baidunetdisk /usr/bin/baidunetdisk
-```
 
 
 
