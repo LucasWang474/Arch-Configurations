@@ -412,8 +412,7 @@ LC_NAME=en_US.UTF-8
 LC_NUMERIC=en_US.UTF-8
 LC_PAPER=en_US.UTF-8
 LC_TELEPHONE=en_US.UTF-8
-# LC_TIME=en_US.UTF-8
-LC_TIME=zh_CN.UTF-8
+LC_TIME=en_US.UTF-8
 ```
 
 
@@ -527,7 +526,7 @@ passwd
 
 ```bash
 pacman -S grub efibootmgr dosfstools mtools ntfs-3g
-# pacman -S os-prober # multi boot
+pacman -S os-prober # for detecting other os
 ```
 
 ```bash
@@ -540,7 +539,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 By default at boot, grub will wait for 5 seconds before choosing the default option. To disable this wait, use the following.
 
 ```bash
-sed 's/^GRUB_TIMEOUT=5$/GRUB_TIMEOUT=0/' -i /etc/default/grub
+sed 's/^GRUB_TIMEOUT=5$/GRUB_TIMEOUT=1/' -i /etc/default/grub
 ```
 
 **Note**: *If you still want access to the grub boot menu, you might want to set this to 1 second instead of 0.*
@@ -697,3 +696,8 @@ pacman -S ntp
 systemctl enable --now ntpd
 ```
 
+
+
+
+
+## Reboot
