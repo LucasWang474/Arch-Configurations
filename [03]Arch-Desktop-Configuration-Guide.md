@@ -1121,6 +1121,11 @@ sudo pacman -S goldendict hunspell hunspell-en_US
 
 ## Vmware
 
+> - [VMware - ArchWiki](https://wiki.archlinux.org/title/VMware)
+> - [VMware/Install Arch Linux as a guest](https://wiki.archlinux.org/title/VMware/Install_Arch_Linux_as_a_guest)
+
+
+
 **First install vmware,**
 
 ```bash
@@ -1235,6 +1240,26 @@ Example:
 ```bash
 sudo echo '.host:/D $HOME/SHARED fuse.vmhgfs-fuse nofail,allow_other 0 0' >> /etc/fstab
 ```
+
+
+
+
+
+### Install Arch Linux as a guest
+
+If you are installing Arch Linux as a virtual machine,
+
+```bash
+sudo pacman -S open-vm-tools
+
+# Service responsible for the Virtual Machine status report.
+sudo systemctl enable vmtoolsd.service 
+
+# Filesystem utility. Enables drag & drop functionality between host and guest through FUSE (Filesystem in Userspace).
+sudo systemctl enable vmware-vmblock-fuse.service 
+```
+
+For more, read https://wiki.archlinux.org/title/VMware/Install_Arch_Linux_as_a_guest#Open-VM-Tools
 
 
 
