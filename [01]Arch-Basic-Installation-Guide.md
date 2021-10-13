@@ -1,10 +1,11 @@
 # References
 
+- [Youtube: EF - Linux Made Simple](https://www.youtube.com/channel/UCX_WM2O-X96URC5n66G-hvw) (强烈推荐)
+
 - [Arch wiki](https://wiki.archlinux.org/index.php/installation_guide)
 - [How to install Arch Linux in the cloud](https://upcloud.com/community/tutorials/install-arch-linux/)
 - [Installing 2019 Arch Linux on a Vultr Server](https://www.vultr.com/docs/installing-2019-arch-linux-on-a-vultr-server?__cf_chl_jschl_tk__=741c9f6169ab579e8dbfde914747b1743bcf6c02-1612449275-0-AV3LXK85jCpdIFwKeZJVVNuB7QM-r8K4IK_LsFdmQxllDU3LiULXQvdGa7fBEFt7lduB_rG_HBgd_g_orUTavhpVJ2l291gmTTldDwLWqFWdewReuhY6gVUT_e0NXt0YtWSLJxWLIJkGa7D50yN4lewwh6pruJImZNQj1IvG4j8qcr59AEUGnaFNQO8_caj-9bJfiO6b4FGwxgx-gA1gblq-VXY4eJL6GcKtdSSnJdgw-BotqF85io-SbncbKzF0Ict3R2iUUR5MO3YFhzuUm6FKLsGx-mqrxGEGn5caUbXHOUOOcBahAMN2E1jD7Mv0926y3-3-C2C3-T-Q3PwOFcu9uIwcQJ3aKJltCs3O8J5L22JorUXIwfdT1kSiYopm-7QEFfOSMBaMe_gxB2ZSuLx3POPb27JG-3OZ3SyrKdzFbjY2SQtLcCndJCRfD_T23w)
 
-- [Youtube: EF - Linux Made Simple](https://www.youtube.com/channel/UCX_WM2O-X96URC5n66G-hvw)
 
 
 
