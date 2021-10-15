@@ -138,6 +138,7 @@ sudo pacman -S xf86-input-vmmouse xf86-video-vmware mesa
 
 ```bash
 sudo pacman -S i3
+# sudo pacman -S i3-wm i3lock i3status
 yay -S i3exit
 ```
 
@@ -174,7 +175,7 @@ ln i3status.conf ~/.config/i3/i3status.conf
 ### 3.2 Installing Essential Packages
 
 ```bash
-sudo pacman -S xfce4-terminal firefox thunar ttf-font-awesome rofi dmenu noto-fonts noto-fonts-cjk
+sudo pacman -S xfce4-terminal firefox thunar  ttf-font-awesome rofi dmenu noto-fonts noto-fonts-cjk
 ```
 
 

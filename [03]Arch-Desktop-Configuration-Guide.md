@@ -148,7 +148,7 @@ sudo pacman -S okular
 ### Editor
 
 ```bash
-sudo pacman -S 
+sudo pacman -S masterpdfeditor
 ```
 
 
@@ -377,10 +377,11 @@ sudo pacman -S nitrogen
 sudo pacman -S lxappearance # theme manager
 
 # gtk-theme
-yay -S matcha-gtk-theme arc-gtk-theme
+yay -S arc-gtk-theme dracula-gtk-theme
 
 # icon-theme
-sudo pacman -S papirus-icon-theme
+sudo pacman -S papirus-icon-theme 
+yay -S surfn-icons-git
 
 # cursor-theme
 sudo pacman -S bibata-cursor-theme
@@ -1179,7 +1180,25 @@ mks.gl.allowBlacklistedDrivers = "TRUE"
 
 
 
-### Fix `drag and drop` and `copy and paste` not working
+### Arch Linux as a guest
+
+If you are installing Arch Linux as a virtual machine,
+
+```bash
+sudo pacman -S open-vm-tools
+
+# Service responsible for the Virtual Machine status report.
+sudo systemctl enable vmtoolsd.service 
+
+# Filesystem utility. Enables drag & drop functionality between host and guest through FUSE (Filesystem in Userspace).
+sudo systemctl enable vmware-vmblock-fuse.service 
+```
+
+For more, read https://wiki.archlinux.org/title/VMware/Install_Arch_Linux_as_a_guest#Open-VM-Tools
+
+
+
+#### Fix `drag and drop` and `copy and paste` not working
 
 Try running:
 
@@ -1199,7 +1218,7 @@ echo "vmware-vmblock-fuse &" >> ~/.xprofile
 
 
 
-### Setup Shared Folder
+#### Setup Shared Folder
 
 - `vmhgfs-fuse` - Utility for mounting vmhgfs shared folders.
 
@@ -1227,7 +1246,7 @@ vmhgfs-fuse -o allow_other -o auto_unmount .host:/D $HOME/SHARED
 
 
 
-#### fstab
+##### fstab
 
 Add a rule for each share:
 
@@ -1240,28 +1259,6 @@ Example:
 ```bash
 sudo echo '.host:/D $HOME/SHARED fuse.vmhgfs-fuse nofail,allow_other 0 0' >> /etc/fstab
 ```
-
-
-
-
-
-### Install Arch Linux as a guest
-
-If you are installing Arch Linux as a virtual machine,
-
-```bash
-sudo pacman -S open-vm-tools
-
-# Service responsible for the Virtual Machine status report.
-sudo systemctl enable vmtoolsd.service 
-
-# Filesystem utility. Enables drag & drop functionality between host and guest through FUSE (Filesystem in Userspace).
-sudo systemctl enable vmware-vmblock-fuse.service 
-```
-
-For more, read https://wiki.archlinux.org/title/VMware/Install_Arch_Linux_as_a_guest#Open-VM-Tools
-
-
 
 
 

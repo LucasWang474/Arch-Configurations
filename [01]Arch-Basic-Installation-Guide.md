@@ -17,15 +17,13 @@
 
 Visit the [Download](https://www.archlinux.org/download/) page.
 
-Use `wget`:
+For example, use `wget`:
 
 ```bash
 cd Downloads
 
 wget https://mirrors.sjtug.sjtu.edu.cn/archlinux/iso/2021.05.01/archlinux-2021.05.01-x86_64.iso
 ```
-
-
 
 
 
@@ -37,13 +35,13 @@ wget https://mirrors.sjtug.sjtu.edu.cn/archlinux/iso/2021.05.01/archlinux-2021.0
   sudo dd bs=4M if=path/to/iso of=/dev/NAME status=progress oflag=sync
   ```
 
-  Or simply
+  Or
 
   ```bash
   su -c 'cat path/to/archlinux.iso > /dev/sdx'
   ```
 
-  And other methods:
+  Or
 
   ```bash
   cp path/to/archlinux.iso /dev/sdx
@@ -54,7 +52,7 @@ wget https://mirrors.sjtug.sjtu.edu.cn/archlinux/iso/2021.05.01/archlinux-2021.0
 
   - [Rufus - The Official Website (Download, New Releases)](https://rufus.ie/)
   
-    > **Note: If the USB drive does not boot properly using the default ISO Image mode, DD Image mode should be used instead.**
+    > **Note: If the USB drive does not boot properly using the default ISO Image mode, DD Image mode may be used instead.**
   
   - [USBWriter download | SourceForge.net](https://sourceforge.net/projects/usbwriter/)
 
@@ -242,6 +240,7 @@ sda      8:0    0    60G  0 disk
 ```bash
 reflector -c China --save /etc/pacman.d/mirrorlist --sort rate
 cat /etc/pacman.d/mirrorlist
+pacman -Syy
 ```
 
 If the command above does not work, edit it manually.
@@ -259,7 +258,7 @@ vim /etc/pacman.d/mirrorlist
 ## 1.2 Install Essential Packages
 
 ```bash
-pacstrap /mnt base base-devel linux linux-firmware linux-headers amd-ucode vim bash fish rsync reflector git openssh neofetch
+pacstrap /mnt base base-devel linux linux-firmware amd-ucode vim bash fish rsync reflector git openssh neofetch
 ```
 
 
