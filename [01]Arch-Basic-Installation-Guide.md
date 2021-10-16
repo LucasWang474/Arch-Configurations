@@ -424,7 +424,7 @@ LC_TIME=en_US.UTF-8
 **First** create your hostname:
 
 ```bash
-echo "arch" > /etc/hostname
+echo "ArchLinux-VM" > /etc/hostname
 ```
 
 **Then** add matching entries to [hosts(5)](https://jlk.fjfi.cvut.cz/arch/manpages/man/hosts.5):
@@ -433,7 +433,7 @@ echo "arch" > /etc/hostname
 cat > /etc/hosts << EOF
 127.0.0.1    localhost
 ::1          localhost
-127.0.1.1    arch.localdomain arch
+127.0.1.1    ArchLinux-VM.localdomain ArchLinux-VM
 EOF
 ```
 

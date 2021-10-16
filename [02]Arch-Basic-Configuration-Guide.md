@@ -69,8 +69,9 @@ sudo reflector -c China --save /etc/pacman.d/mirrorlist --sort rate
   ```bash
   # /etc/pacman.conf
   [archlinuxcn]
-  # Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux-cn/$arch
-  Server = http://mirror.lzu.edu.cn/archlinuxcn/$arch
+  # Server = http://mirror.lzu.edu.cn/archlinuxcn/$arch
+  # Server = http://mirrors.bfsu.edu.cn/archlinuxcn/$arch
+  Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux-cn/$arch
   ```
 
 **And** uncomment `#Color`.
