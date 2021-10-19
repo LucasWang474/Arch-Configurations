@@ -1,60 +1,5 @@
 # Basic
 
-## Input Method: fcitx with sogoupinyin
-
-### Install
-
-```bash
-yay -S fcitx-im fcitx-configtool fcitx-qt5 fcitx-sogoupinyin fcitx-qt4
-```
-
-**Set environment variables for IM modules**
-
-Edit `~/.pam_environment`:
-
-```bash
-GTK_IM_MODULE DEFAULT=fcitx
-QT_IM_MODULE  DEFAULT=fcitx
-XMODIFIERS    DEFAULT=\@im=fcitx
-```
-
-
-
-### Configuration
-
-Run
-
-```bash
-fcitx
-fcitx-configtool
-```
-
-
-
-**Set auto start:**
-
-- Method 1
-
-  Edit `i3wm` config:
-
-  ```bash
-  exec --no-startup-id fcitx-autostart
-  ```
-
-- Method 2
-
-  Edit `~/.xinit`
-
-  ```bash
-  fcitx-autostart &
-  ```
-
-
-
-
-
-
-
 
 ## File Browser
 
@@ -386,14 +331,6 @@ yay -S surfn-icons-git
 # cursor-theme
 sudo pacman -S bibata-cursor-theme
 ```
-
-**Fix cursor size:**
-
-- Edit `~/.Xresources`
-
-    ```bash
-    Xcursor.size: 24
-    ```
 
 
 
