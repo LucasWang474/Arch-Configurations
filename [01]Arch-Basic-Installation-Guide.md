@@ -156,9 +156,6 @@ Use [timedatectl(1)](https://jlk.fjfi.cvut.cz/arch/manpages/man/timedatectl.1) t
 
 ```bash
 timedatectl set-ntp true
-
-# 解决 Linux Windows 双系统时间不统一
-# timedatectl set-local-rtc 1 --adjust-system-clock
 ```
 
 To check the service status, use `timedatectl status`.
