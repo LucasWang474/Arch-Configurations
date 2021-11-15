@@ -1,8 +1,6 @@
-This repository has been archived. For new, see [LucasWang474/My-OS-Workflow: My operating system workflow. (Windows 10 + ArchLinux VM + Windows Terminal + VSCode) (github.com)](https://github.com/LucasWang474/My-OS-Workflow).
+手动安装 ArchLinux 非常适合用来学习，相信你安装了 1-3 次之后基本就对桌面系统是如何正常运行起来的非常了解了。
 
-
-
-
+但是实际工作中还是建议使用 ArcoLinux，节省时间。
 
 # Arch-Configurations
 
